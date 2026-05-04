@@ -12,7 +12,7 @@ Each version (e.g., MK0, MK1) includes important information specific to that it
 - **Images** - Photos showing assembly and tests.
 - **Videos** - Links to videos containing demos and tests.
 
-## MK0 GIF
+## MK0 GIF's
 ### Keyboard Input
 ![20260328_172912(1)](https://github.com/user-attachments/assets/ec89d633-b630-447d-a2c5-fabca8c10cfa)
 
