@@ -16,6 +16,7 @@ See Videos folder for links to tests and demos.
 
 ## Demo
 [Watch on YouTube](https://www.youtube.com/watch?v=RLUshVP_gwQ) - Keyboard input
+[Watch on YouTube](https://www.youtube.com/shorts/l--I8Azhv_0) - Gesture Recognition
 
 ## Challenges
 Some challenges I came across were improper alignment with the servo horn and servo motor. At first when trying to run my hand I came across an issue where the finger wasn't being pulled down enough by the servo. Some ways I tried to overcome this obstacle were completely taking apart the inside of the palm thinking that there was friction on the tendons
