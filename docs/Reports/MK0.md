@@ -3,16 +3,16 @@
 Brief description of what MK0 is and what was achieved including challenges faced.
 
 ## Bill of Materials
-See BOM folder for full parts list and costs.
+[MK0 Bill of Materials](https://github.com/Jackmortal/Bionic-Hand-Project/blob/main/docs/BOM/MK0.md)
 
 ## Code
-See Firmware folder. Built with Python, OpenCV, MediaPipe on Raspberry Pi 5.
+[MK0 Code](https://github.com/Jackmortal/Bionic-Hand-Project/tree/main/src)
 
 ## Images
-See Images folder for wiring and build layout.
+[MK0 Images](https://github.com/Jackmortal/Bionic-Hand-Project/blob/main/assets/images/MK0.md)
 
 ## Vidoes
-See Videos folder for links to tests and demos.
+[MK0 Videos](https://github.com/Jackmortal/Bionic-Hand-Project/blob/main/assets/videos/MK0.md)
 
 ## Demo
 [Watch on YouTube](https://www.youtube.com/watch?v=RLUshVP_gwQ) - Keyboard input
