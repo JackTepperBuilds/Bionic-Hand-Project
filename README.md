@@ -1,21 +1,55 @@
-# Bionic-Hand-Project
-A bionic hand starting with 5 degrees of freedom (DOF) controlled via gesture recognition using Python, OpenCV, and MediaPipe on a Raspberry Pi 5.
-Future versions will expand DOF, implement EMG control, ROS2 integration, and more advanced machine learning.
-
-## Versions
-The Versions folder contains all the different iterations of my bionic hand over time. 
-Each version (e.g., MK0, MK1) includes important information specific to that iteration such as:
-
-- **BOM** - Bill of materials such as servos, tools, screws, etc.
-- **Firmware** - Code used to control the bionic hand.
-- **Requirements** - software dependencies for easy replication.
-- **Images** - Photos showing assembly and tests.
-- **Videos** - Links to videos containing demos and tests.
-
-## MK0 GIF's
-### Keyboard Input
-![20260328_172912(1)](https://github.com/user-attachments/assets/ec89d633-b630-447d-a2c5-fabca8c10cfa)
+## MK0 GIF
 
 ### Gesture Recognition
 <img width="640" height="396" alt="20260504_141202(1)" src="https://github.com/user-attachments/assets/2e550a3d-35d1-4758-a8a7-08d186947fc2" />
+
+---
+
+# 🦾 Bionic Hand Project
+
+A real-time bionic hand system controlled using computer vision, OpenCV, and MediaPipe running on a Raspberry Pi 5.
+
+The system translates live hand gestures into robotic finger movements using a vision → recognition → control pipeline.
+
+---
+
+## 🔥 Demos
+
+- 🎥 [Gesture Recognition Demo](https://www.youtube.com/shorts/l--I8Azhv_0)
+
+
+## 🧠 System Overview
+
+Camera Input → MediaPipe Hand Tracking → Gesture Recognition → Servo Control → Bionic Hand Actuation
+
+---
+
+## ⚙️ Tech Stack
+
+- Python
+- OpenCV
+- MediaPipe
+- Raspberry Pi 5
+- PCA9685 Servo Driver
+
+---
+
+## 📁 Project Structure
+
+- `src/` → Core system code (vision, control, models)
+- `docs/` → Technical documentation (BOM, MK reports, lessons learned)
+- `assets/` → Images and videos of system demos and assembly
+
+---
+
+## 🚀 System Evolution
+
+The project is developed in iterative versions:
+
+- **MK0** → Initial prototype with basic MediaPipe gesture-to-servo mapping
+- **MK1** → Refactored MK0 code in C++, with imporved control, and 17 degrees of freedom
+
+Each version is tracked using Git tags and documented in the `docs/` folder.
+
+---
 
