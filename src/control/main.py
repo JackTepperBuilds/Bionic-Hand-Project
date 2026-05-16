@@ -3,7 +3,10 @@ from hand import Hand
 print("Closed_Fist, Open_Palm, Victory, Thumb_Up, Pointing_Up, ILoveYou\n")
 x = input()
 
-gesture = Hand()
+prev_gesture = "none"
+gesture = Hand(prev_gesture, x)
+prev_gesture = x
+
 if x == "Closed_Fist":
     gesture.run_hand(x)
 elif x == "Open_Palm":
