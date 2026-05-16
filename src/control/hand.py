@@ -12,7 +12,7 @@ class Hand:
         i2c: busio.I2C = busio.I2C(board.SCL, board.SDA)
         pca = PCA9685(i2c)
         pca.frequency = 50
-        self.prev_gesture = None
+        self.prev_gesture = prev_gesture
         self.current_gesture = current_gesture
 
         # gesture_list dictionary that contains every gesture and their respective list of what 
@@ -26,7 +26,7 @@ class Hand:
 
         # Fingers dictionary containing the channels of each servo on the driver as well as set
         # max and min pulses.
-        self.fingers: dict = {"pointer": servo.Servo(self.pca.channels[0], minpulse = 500, maxpulse = 2500), 
+        self.fingers: dict = {"pointer": servo.Servo(pca.channels[0], minpulse = 500, maxpulse = 2500), 
                         "middle": servo.Servo(pca.channels[1], minpulse = 500, maxpulse = 2500),
                         "ring": servo.Servo(pca.channels[2], minpulse = 500, maxpulse = 2500),
                         "pinky": servo.Servo(pca.channels[3], minpulse = 500, maxpulse = 2500),
