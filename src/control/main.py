@@ -8,14 +8,14 @@ gesture = Hand(prev_gesture, x)
 prev_gesture = x
 
 if x == "Closed_Fist":
-    gesture.run_hand(x)
+    gesture.run_hand()
 elif x == "Open_Palm":
-    gesture.run_hand(x)
+    gesture.run_hand()
 elif x == "Victory":
-    gesture.run_hand(x)
+    gesture.run_hand()
 elif x == "Thumb_Up":
-    gesture.run_hand(x)
+    gesture.run_hand()
 elif x == "Pointing_Up":
-    gesture.run_hand(x)
+    gesture.run_hand()
 elif x == "ILoveYou":
-    gesture.run_hand(x)
+    gesture.run_hand()
