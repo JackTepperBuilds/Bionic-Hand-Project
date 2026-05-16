@@ -1,8 +1,18 @@
 from hand import Hand
 
-print("1: Close, 2: Open, 3: Peace, 4: Thumb, 5: Pointing, 6: Rock\n")
+print("Closed_Fist, Open_Palm, Victory, Thumb_Up, Pointing_Up, ILoveYou\n")
 x = input()
 
 gesture = Hand()
-if x == 1:
-    gesture.
+if x == "Closed_Fist":
+    gesture.run_hand(x)
+elif x == "Open_Palm":
+    gesture.run_hand(x)
+elif x == "Victory":
+    gesture.run_hand(x)
+elif x == "Thumb_Up":
+    gesture.run_hand(x)
+elif x == "Pointing_Up":
+    gesture.run_hand(x)
+elif x == "ILoveYou":
+    gesture.run_hand(x)
