@@ -8,16 +8,16 @@ from adafruit_motor import servo
 # Sets up i2c communication and passes it into the sevo driver (pca) and current_gesture
 # tracks what the current gesture being run is.
 class Hand:
-    def __init__(self, prev_gesture: str, fingers: dict, finger_list: dict[str, tuple], current_gesture: str):
+    def __init__(self, prev_gesture: str, fingers: dict, gesture_list: dict[str, tuple], current_gesture: str):
         i2c: busio.I2C = busio.I2C(board.SCL, board.SDA)
         pca = PCA9685(i2c)
         pca.frequency = 50
         self.prev_gesture = 'Open_Palm'
         self.current_gesture = 'Open_Palm'
 
-        # finger_list dictionary that contains every gesture and their respective list of what 
+        # gesture_list dictionary that contains every gesture and their respective list of what 
         # fingers whould be up (1) and what fingers should be down (0).
-        self.finger_list: dict[str, tuple] = {"Open_Palm": open_hand = (1, 1, 1, 1, 1),
+        self.gesture_list: dict[str, tuple] = {"Open_Palm": open_hand = (1, 1, 1, 1, 1),
                                             "Closed_Fist": close_hand = (0, 0, 0, 0, 0),
                                             "Victory": peace_sign = (1, 1, 0, 0, 0),
                                             "Thumb_Up": thumbs_up = (0, 0, 0, 0, 1),
@@ -38,8 +38,8 @@ class Hand:
     def run_hand(self) -> None:
         
         # Contains lists of prev_gesture and current_gesture 1's and 0's.
-        prev_tuple: list[int] = self.finger_list[self.prev_gesture]
-        current_tuple: list[int] = self.finger_list[self.current_gesture]
+        prev_tuple: list[int] = self.gesture_list[self.prev_gesture]
+        current_tuple: list[int] = self.gesture_list[self.current_gesture]
 
         # Contains a list of finger names based on their respective indexes.
         finger_names: list[str] = self.fingers.keys
@@ -52,12 +52,12 @@ class Hand:
                     finger_name: str = finger_names[y]
 
                     if y == 0:
-                        for j in range(180, -2, -2):
+                        for j in range(0, 182, 2):
                             self.fingers[finger_name].angle = j
                             time.sleep(0.02)
 
                     elif y == 1:
-                        for m in range(0, 182, 2):
+                        for m in range(180, -2, -2):
                             self.fingers[finger_name].angle = m
                             time.sleep(0.02)
 
