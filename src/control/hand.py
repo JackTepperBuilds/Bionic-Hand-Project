@@ -38,12 +38,12 @@ class Hand:
     def run_hand(self, new_gesture) -> None:
         self.current_gesture = new_gesture
         
-        # Contains lists of prev_gesture and current_gesture 1's and 0's.
-        prev_tuple: list[int] = self.gesture_list[self.prev_gesture]
-        current_tuple: list[int] = self.gesture_list[self.current_gesture]
+        # Contains tuples of prev_gesture and current_gesture 1's and 0's.
+        prev_tuple: tuple[int] = self.gesture_list[self.prev_gesture]
+        current_tuple: tuple[int] = self.gesture_list[self.current_gesture]
 
         # Contains a list of finger names based on their respective indexes.
-        finger_names: list[str] = self.fingers.keys
+        finger_names: list[str] = self.fingers.keys()
 
         for x in range(5):
             for y in range(5):
