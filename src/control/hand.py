@@ -43,7 +43,9 @@ class Hand:
         current_tuple: tuple[int] = self.gesture_list[self.current_gesture]
 
         # Contains a list of finger names based on their respective indexes.
-        finger_names: list[str] = self.fingers.keys()
+            # Wrapped the iterable list of keys using list() so that it can then be 
+            # subscriptable later using finger_names[y].
+        finger_names: list[str] = list(self.fingers.keys())
 
         for x in range(5):
             for y in range(5):
