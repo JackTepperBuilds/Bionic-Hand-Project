@@ -35,7 +35,8 @@ class Hand:
 
     # A method containing a nested for loop with an outer loop that contains a 5 finger array 
     # of the last gesture and an inner loop of a 5 finger array of the gesture I am trying to perform.
-    def run_hand(self) -> None:
+    def run_hand(self, new_gesture) -> None:
+        self.current_gesture = new_gesture
         
         # Contains lists of prev_gesture and current_gesture 1's and 0's.
         prev_tuple: list[int] = self.gesture_list[self.prev_gesture]
