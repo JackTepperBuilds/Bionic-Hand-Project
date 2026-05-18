@@ -28,9 +28,9 @@ class Hand:
         # max and min pulses.
         self.fingers: dict = {"pointer": servo.Servo(pca.channels[0], min_pulse = 500, max_pulse = 2500), 
                         "middle": servo.Servo(pca.channels[1], min_pulse = 500, max_pulse = 2500),
-                        "ring": servo.Servo(pca.channels[2], min_pulse = 500, max_pulse = 2500),
+                        "ring": servo.Servo(pca.channels[3], min_pulse = 500, max_pulse = 2500),
                         "pinky": servo.Servo(pca.channels[4], min_pulse = 500, max_pulse = 2500),
-                        "thumb": servo.Servo(pca.channels[3], min_pulse = 500, max_pulse = 2500)}
+                        "thumb": servo.Servo(pca.channels[2], min_pulse = 500, max_pulse = 2500)}
 
 
     # A method containing a nested for loop with an outer loop that contains a 5 finger array 
