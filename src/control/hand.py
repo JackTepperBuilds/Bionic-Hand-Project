@@ -53,15 +53,15 @@ class Hand:
             elif prev_tuple[x] != current_tuple[x]:
                 finger_name: str = finger_names[x]
 
-            if y == 0:
-                for j in range(0, 182, 2):
-                    self.fingers[finger_name].angle = j
-                    time.sleep(0.02)
+                if current_tuple[x] == 0:
+                    for j in range(0, 182, 2):
+                        self.fingers[finger_name].angle = j
+                        time.sleep(0.02)
 
-            elif y == 1:
-                for m in range(180, -2, -2):
-                    self.fingers[finger_name].angle = m
-                    time.sleep(0.02)
+                elif current_tuple[x] == 1:
+                    for m in range(180, -2, -2):
+                        self.fingers[finger_name].angle = m
+                        time.sleep(0.02)
 
-            self.prev_gesture = self.current_gesture
+                self.prev_gesture = self.current_gesture
                     
