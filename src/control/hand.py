@@ -48,21 +48,20 @@ class Hand:
         finger_names: list[str] = list(self.fingers.keys())
 
         for x in range(5):
-            for y in range(5):
-                if prev_tuple[x] == current_tuple[y]:
-                    continue
-                elif prev_tuple[x] != current_tuple[y]:
-                    finger_name: str = finger_names[y]
+            if prev_tuple[x] == current_tuple[x]:
+                continue
+            elif prev_tuple[x] != current_tuple[x]:
+                finger_name: str = finger_names[x]
 
-                    if y == 0:
-                        for j in range(0, 182, 2):
-                            self.fingers[finger_name].angle = j
-                            time.sleep(0.02)
+            if y == 0:
+                for j in range(0, 182, 2):
+                    self.fingers[finger_name].angle = j
+                    time.sleep(0.02)
 
-                    elif y == 1:
-                        for m in range(180, -2, -2):
-                            self.fingers[finger_name].angle = m
-                            time.sleep(0.02)
+            elif y == 1:
+                for m in range(180, -2, -2):
+                    self.fingers[finger_name].angle = m
+                    time.sleep(0.02)
 
-                    self.prev_gesture = self.current_gesture
+            self.prev_gesture = self.current_gesture
                     
