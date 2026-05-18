@@ -28,8 +28,8 @@ class Hand:
         # max and min pulses.
         self.fingers: dict = {"pointer": servo.Servo(pca.channels[0], min_pulse = 500, max_pulse = 2500), 
                         "middle": servo.Servo(pca.channels[1], min_pulse = 500, max_pulse = 2500),
-                        "ring": servo.Servo(pca.channels[2], min_pulse = 500, max_pulse = 2500),
-                        "pinky": servo.Servo(pca.channels[3], min_pulse = 500, max_pulse = 2500),
+                        "ring": servo.Servo(pca.channels[3], min_pulse = 500, max_pulse = 2500),
+                        "pinky": servo.Servo(pca.channels[2], min_pulse = 500, max_pulse = 2500),
                         "thumb": servo.Servo(pca.channels[4], min_pulse = 500, max_pulse = 2500)}
 
 
@@ -56,12 +56,12 @@ class Hand:
                 if current_tuple[x] == 0:
                     for j in range(0, 182, 2):
                         self.fingers[finger_name].angle = j
-                        time.sleep(0.02)
+                        time.sleep(0.01)
 
                 elif current_tuple[x] == 1:
                     for m in range(180, -2, -2):
                         self.fingers[finger_name].angle = m
-                        time.sleep(0.02)
+                        time.sleep(0.01)
 
                 self.prev_gesture = self.current_gesture
                     
