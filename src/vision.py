@@ -1,6 +1,6 @@
 import cv2 as cv
 from picamera2 import Picamera2
-from libcamera import transform
+from libcamera import Transform
 
 class Vision:
     # Constructor initializes the camera, sets the config, passes the config to the camera, then starts the camera.
