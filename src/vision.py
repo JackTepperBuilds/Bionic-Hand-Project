@@ -21,5 +21,5 @@ class Vision:
                 cv.destroyAllWindows()
                 break
                 
-        cv.caprelease()
+        cv.cap.release()
         cv.destroyAllWindows()
