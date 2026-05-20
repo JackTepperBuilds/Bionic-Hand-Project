@@ -11,8 +11,15 @@ class Vision:
         picam2.start()
 
     def generator(self):
-        While True:
+        while True:
             frame = self.picam2.capture_array()
 
             cv.imshow("Live Feed", frame)
-            yield frame
+            #yield frame
+
+            if cv.waitkey() & 0xFF == ord('d'):
+                cv.destroyAllWindows()
+                break
+                
+        cv.caprelease()
+        cv.destroyAllWindows()
