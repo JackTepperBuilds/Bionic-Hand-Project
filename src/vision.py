@@ -21,5 +21,5 @@ class Vision:
                 cv.destroyAllWindows()
                 break
                 
-        cv.cap.release()
+        self.picam2.stop()
         cv.destroyAllWindows()
