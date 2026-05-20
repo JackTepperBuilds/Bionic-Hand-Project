@@ -9,7 +9,7 @@ cam_thread = threading.Thread(target = camera.generator) # Starts the camera out
 
 print("Closed_Fist, Open_Palm, Victory, Thumb_Up, Pointing_Up, ILoveYou, exit\n")
 
-cam_thread() # Runs the camera output (Opens the live window).
+cam_thread.start() # Runs the camera output (Opens the live window).
 
 while True:
     x = input()
