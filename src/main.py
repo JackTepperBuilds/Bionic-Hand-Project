@@ -1,9 +1,11 @@
 from hand import Hand
 from vision import Vision
+import threading
 
 gesture = Hand()
 camera = Vision()
-camera.generator()
+
+thread = threading.Thread(target = camera.generator)
 
 print("Closed_Fist, Open_Palm, Victory, Thumb_Up, Pointing_Up, ILoveYou, exit\n")
 
