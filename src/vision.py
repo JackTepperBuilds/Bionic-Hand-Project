@@ -6,9 +6,9 @@ class Vision:
     # Constructor initializes the camera, sets the config, passes the config to the camera, then starts the camera.
     def __init__(self):
         self.picam2 = Picamera2()
-        config = picam2.create_preview_configuration({'size': (640, 480), 'format': 'RGB888'}, transform = Transform(hflip = True))
-        picam2.configure(config)
-        picam2.start()
+        config = self.picam2.create_preview_configuration({'size': (640, 480), 'format': 'RGB888'}, transform = Transform(hflip = True))
+        self.picam2.configure(config)
+        self.picam2.start()
 
     def generator(self):
         while True:
