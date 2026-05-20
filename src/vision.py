@@ -14,7 +14,7 @@ class Vision:
         while True:
             frame = self.picam2.capture_array()
 
-            cv.imshow("Live Feed", frame)
+            cv.imshow('Live Feed', frame)
             #yield frame
 
             if cv.waitKey(20) & 0xFF == ord('d'):
