@@ -8,7 +8,6 @@ camera = Vision()
 
 while True:
     x = input()
-    gesture.run_hand(x)
-
     if x == "exit":
         break
+    gesture.run_hand(x)
