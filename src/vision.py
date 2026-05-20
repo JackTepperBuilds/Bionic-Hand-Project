@@ -10,7 +10,7 @@ class Vision:
         self.picam2.configure(config)
         self.picam2.start()
 
-    def generator(self):
+    def generator(self) -> None:
         while True:
             frame = self.picam2.capture_array()
 

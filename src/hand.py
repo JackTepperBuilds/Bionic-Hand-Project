@@ -10,7 +10,7 @@ from adafruit_motor import servo
 class Hand:
     def __init__(self):
         i2c: busio.I2C = busio.I2C(board.SCL, board.SDA)
-        pca = PCA9685(i2c)
+        pca: PCA9685 = PCA9685(i2c)
         pca.frequency = 50
         self.prev_gesture = "Open_Palm"
         self.current_gesture = "Open_Palm"
