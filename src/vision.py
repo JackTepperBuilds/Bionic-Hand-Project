@@ -17,7 +17,7 @@ class Vision:
             cv.imshow("Live Feed", frame)
             #yield frame
 
-            if cv.waitkey() & 0xFF == ord('d'):
+            if cv.waitkey(20) & 0xFF == ord('d'):
                 cv.destroyAllWindows()
                 break
                 
