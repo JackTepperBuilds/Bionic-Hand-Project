@@ -1,5 +1,5 @@
 from hand import Hand
-from vision import Vision
+from camera import Vision
 
 print("Closed_Fist, Open_Palm, Victory, Thumb_Up, Pointing_Up, ILoveYou, exit\n")
 
