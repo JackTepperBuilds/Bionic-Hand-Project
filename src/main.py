@@ -5,9 +5,11 @@ import threading
 gesture = Hand()
 camera = Vision()
 
-thread = threading.Thread(target = camera.generator)
+thread = threading.Thread(target = camera.generator) # Starts the camera output.
 
 print("Closed_Fist, Open_Palm, Victory, Thumb_Up, Pointing_Up, ILoveYou, exit\n")
+
+thread() # Runs the camera output (Opens the live window).
 
 while True:
     x = input()
