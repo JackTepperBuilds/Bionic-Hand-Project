@@ -21,7 +21,6 @@ wrist = servo.Servo(pca.channels[0], min_pulse = 500, max_pulse = 2500)
 print("0: Up, 1: Down, 3: Exit")
 
 while True:
-    global current_gesture
     x: int = int(input())
 
     if (x == 0):
