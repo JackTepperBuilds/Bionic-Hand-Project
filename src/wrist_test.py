@@ -16,19 +16,19 @@ pca.frequency = 333
 # Sets wrist to channel zero and sets its min and max pulses.
 wrist = servo.Servo(pca.channels[0], min_pulse = 500, max_pulse = 2500)
 
-print("0: Up, 1: Down, exit: end program")
-x = input()
+print("0: Up, 1: Down, 3: Exit")
+x: int = int(input())
 
 while True:
-    if (x == 1):
+    if (x == 0):
         for i in range(90, 0, -2):
             wrist.angle = i
-            time(0.2)
+            time.sleep(0.2)
     elif (x == 1):
         for i in range(90, 180, 2):
             wrist.angle = i
-            time(0.2)
+            time.sleep(0.2)
     # When ending the program the servo is set back to its center position.
-    elif (x == 'exit'):
+    elif (x == 3):
         wrist.angle = 90
         break
