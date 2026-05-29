@@ -28,9 +28,9 @@ while True:
             continue
 
         elif (current_gesture == 1 or current_gesture == 2):
-            for i in range(90, 0, -1):
+            for i in range(180, 0, -1):
                 wrist.angle = i
-                time.sleep(0.015)
+                time.sleep(0.02)
 
         current_gesture = 0
 
@@ -39,9 +39,9 @@ while True:
             continue
 
         elif (current_gesture == 0 or current_gesture == 2):
-            for i in range(90, 180, 1):
+            for i in range(0, 180, 1):
                 wrist.angle = i
-                time.sleep(0.015)
+                time.sleep(0.02)
 
         current_gesture = 1
 
@@ -50,10 +50,10 @@ while True:
         if (current_gesture == 0):
             for i in range(0, 90, 1):
                 wrist.angle = i
-                time.sleep(0.015)
+                time.sleep(0.02)
 
         elif (current_gesture == 1):
             for i in range(180, 90, -1):
                 wrist.angle = i
-                time.sleep(0.015)
+                time.sleep(0.02)
         break
