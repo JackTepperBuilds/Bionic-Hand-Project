@@ -18,6 +18,9 @@ pca.frequency = 50
 # Sets wrist to channel zero and sets its min and max pulses.
 wrist = servo.Servo(pca.channels[0], min_pulse = 500, max_pulse = 2500)
 
+# To make sure wrist is centered before getting input from user.
+wrist.servo = 90
+
 print("1: Up, 0: Down, 2: Exit")
 
 while True:
