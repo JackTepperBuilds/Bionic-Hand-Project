@@ -11,7 +11,7 @@ from adafruit_pca9685 import PCA9685
 # becomes the new pulse width that moves the servo.
 i2c: busio.I2C = busio.I2C(board.SCL, board.SDA)
 pca: PCA9685 = PCA9685(i2c)
-pca.frequency(333)
+pca.frequency = 333
 
 # Sets wrist to channel zero and sets its min and max pulses.
 wrist = servo.Servo(pca.channels[0], min_pulse = 500, max_pulse = 2500)
