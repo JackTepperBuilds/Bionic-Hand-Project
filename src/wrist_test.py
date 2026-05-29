@@ -16,7 +16,7 @@ pca: PCA9685 = PCA9685(i2c)
 pca.frequency = 50
 
 # Sets wrist to channel zero and sets its min and max pulses.
-wrist = servo.Servo(pca.channels[0], min_pulse = 600, max_pulse = 2400)
+wrist = servo.Servo(pca.channels[0], min_pulse = 500, max_pulse = 2500)
 
 print("1: Up, 0: Down, 2: Exit")
 
@@ -30,7 +30,7 @@ while True:
         elif (current_gesture == 1 or current_gesture == 2):
             for i in range(90, 0, -1):
                 wrist.angle = i
-                time.sleep(0.01)
+                time.sleep(0.015)
 
         current_gesture = 0
 
@@ -41,7 +41,7 @@ while True:
         elif (current_gesture == 0 or current_gesture == 2):
             for i in range(90, 180, 1):
                 wrist.angle = i
-                time.sleep(0.01)
+                time.sleep(0.015)
 
         current_gesture = 1
 
@@ -50,10 +50,10 @@ while True:
         if (current_gesture == 0):
             for i in range(0, 90, 1):
                 wrist.angle = i
-                time.sleep(0.01)
+                time.sleep(0.015)
 
         elif (current_gesture == 1):
             for i in range(180, 90, -1):
                 wrist.angle = i
-                time.sleep(0.01)
+                time.sleep(0.015)
         break
