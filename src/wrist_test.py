@@ -16,7 +16,7 @@ pca: PCA9685 = PCA9685(i2c)
 pca.frequency = 50
 
 # Sets wrist to channel zero and sets its min and max pulses.
-wrist = servo.Servo(pca.channels[0], min_pulse = 500, max_pulse = 2500)
+wrist = servo.Servo(pca.channels[0], min_pulse = 600, max_pulse = 2400)
 
 print("1: Up, 0: Down, 2: Exit")
 
