@@ -27,8 +27,8 @@ while True:
         if (current_gesture == 0):
             continue
 
-        elif (current_gesture == 1):
-            for i in range(90, 0, -2):
+        elif (current_gesture == 1 or current_gesture == 2):
+            for i in range(90, 0, -1):
                 wrist.angle = i
                 time.sleep(0.01)
 
@@ -38,8 +38,8 @@ while True:
         if (current_gesture == 1):
             continue
 
-        elif (current_gesture == 0):
-            for i in range(90, 180, 2):
+        elif (current_gesture == 0 or current_gesture == 2):
+            for i in range(90, 180, 1):
                 wrist.angle = i
                 time.sleep(0.01)
 
@@ -48,12 +48,12 @@ while True:
     # When ending the program the servo is set back to its center position.
     elif (x == 2):
         if (current_gesture == 0):
-            for i in range(0, 90, 2):
-                wrist.angle = 90
+            for i in range(0, 90, 1):
+                wrist.angle = i
                 time.sleep(0.01)
 
         elif (current_gesture == 1):
-            for i in range(180, 90, -2):
+            for i in range(180, 90, -1):
                 wrist.angle = i
                 time.sleep(0.01)
         break
