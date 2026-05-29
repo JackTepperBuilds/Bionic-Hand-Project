@@ -23,11 +23,11 @@ while True:
     if (x == 0):
         for i in range(90, 0, -2):
             wrist.angle = i
-            time.sleep(0.2)
+            time.sleep(0.02)
     elif (x == 1):
         for i in range(90, 180, 2):
             wrist.angle = i
-            time.sleep(0.2)
+            time.sleep(0.02)
     # When ending the program the servo is set back to its center position.
     elif (x == 3):
         wrist.angle = 90
