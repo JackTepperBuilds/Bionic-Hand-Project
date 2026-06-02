@@ -28,7 +28,7 @@ class Recognize:
     # This method reads the frames from the vision class's generator and uses the built in landmarks for gesture
     # recognition.
     def recognize(self) -> None:
-        with GestureRecognizer.create_from_options(self.options) as recognizer:
+        with self.GestureRecognizer.create_from_options(self.options) as recognizer:
             camera = Vision()
             x = camera.generator()
 
