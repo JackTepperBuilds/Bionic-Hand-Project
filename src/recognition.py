@@ -23,6 +23,7 @@ class Recognize:
     # Grabs the current gesture that the recognizer captured and sets it to the gesture instance variable.
     def result(self, result: GestureRecognizerResult, output_image: mp.Image, timestamp_ms: int) -> None:
         self.gesture_str = result.gestures[0][0].categoryName
+        print(self.gesture_str)
 
     # This method reads the frames from the vision class's generator and uses the built in landmarks for gesture
     # recognition.
