@@ -11,18 +11,16 @@ class Recognize:
         self.GestureRecognizerOptions = mp.tasks.vision.GestureRecognizerOptions
         self.GestureRecognizerResult = mp.tasks.vision.GestureRecognizerResult
         self.VisionRunningMode = mp.tasks.vision.RunningMode
-        self.gesture = "Open_Palm"
-
         
         # The settings of the recognizer. Contains the location of the pretrained gesture models, sets the LIVE,
         # And calls the result method every time a new gesture is recognized.
-        options = GestureRecognizerOptions(base_options = self.BaseOptions('gesture_recognizer.task'),
+        self.options = GestureRecognizerOptions(base_options = self.BaseOptions('gesture_recognizer.task'),
                                            running_mode = self.VisionRunningMode.LIVE_STREAM,
                                            result_callback = self.result)
 
     # Grabs the current gesture that the recognizer captured and sets it to the gesture instance variable.
     def result(self, result: GestureRecognizerResult, output_image: mp.Image, timestamp_ms: int) -> None:
-        self.gesture = result.gestures[0][0].categoryName
+        gesture_str = result.gestures[0][0].categoryName
 
     # This method reads the frames from the vision class's generator and uses the built in landmarks for gesture
     # recognition.
