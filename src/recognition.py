@@ -16,7 +16,7 @@ class Recognize:
         
         # The settings of the recognizer. Contains the location of the pretrained gesture models, sets the LIVE,
         # And calls the result method every time a new gesture is recognized.
-        self.options = GestureRecognizerOptions(base_options = self.BaseOptions('gesture_recognizer.task'),
+        self.options = self.GestureRecognizerOptions(base_options = self.BaseOptions('gesture_recognizer.task'),
                                            running_mode = self.VisionRunningMode.LIVE_STREAM,
                                            result_callback = self.result)
 
