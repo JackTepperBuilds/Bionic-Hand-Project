@@ -1,7 +1,7 @@
 import mediapipe as mp
 from mediapipe.tasks import python
 from mediapipe.tasks.python import vision
-import vision
+from vision import Vision
 import time
 
 class Recognize:
@@ -11,7 +11,7 @@ class Recognize:
         self.GestureRecognizerOptions = mp.tasks.vision.GestureRecognizerOptions
         self.GestureRecognizerResult = mp.tasks.vision.GestureRecognizerResult
         self.VisionRunningMode = mp.tasks.vision.RunningMode
-        self.gesture = "Unknown"
+        self.gesture = "Open_Palm"
 
         
         # The settings of the recognizer. Contains the location of the pretrained gesture models, sets the LIVE,
@@ -21,14 +21,14 @@ class Recognize:
                                            result_callback = self.result)
 
     # Grabs the current gesture that the recognizer captured and sets it to the gesture instance variable.
-    def result(self, result: GestureRecognizerResult, output_image: mp.Image, timestamp_ms: int):
+    def result(self, result: GestureRecognizerResult, output_image: mp.Image, timestamp_ms: int) -> None:
         self.gesture = result.gestures[0][0].categoryName
 
     # This method reads the frames from the vision class's generator and uses the built in landmarks for gesture
     # recognition.
-    def recognize(self):
+    def recognize(self) -> None:
         with GestureRecognizer.create_from_options(self.options) as recognizer:
-            camera = vision()
+            camera = Vision()
             x = camera.generator()
 
             # Unix epoch time in milliseconds set to an int instead of a float
