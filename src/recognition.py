@@ -35,6 +35,7 @@ class Recognize:
             # Unix epoch time in milliseconds set to an int instead of a float
             frame_timestamp_ms = int(time.time() * 1000)
 
+            # TODO: put next(x) into a loop so the program doesnt just process one frame and then close causing an IndexError 
             frame = next(x) # Runs the generator up to yield and the returns the frame.
             mp_image = mp.Image(image_format = mp.ImageFormat.SRGB, data = frame)
 
