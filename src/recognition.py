@@ -21,7 +21,7 @@ class Recognize:
                                            result_callback = self.result)
 
     # Grabs the current gesture that the recognizer captured and sets it to the gesture instance variable.
-    def result(self, result: self.GestureRecognizerResult, output_image: mp.Image, timestamp_ms: int) -> None:
+    def result(self, result, output_image: mp.Image, timestamp_ms: int) -> None:
         self.gesture_str = result.gestures[0][0].categoryName
         print(self.gesture_str)
 
