@@ -37,31 +37,32 @@ class Hand:
     # of the last gesture and an inner loop of a 5 finger array of the gesture I am trying to perform.
     def run_hand(self, new_gesture) -> None:
         self.current_gesture = new_gesture
-        
-        # Contains tuples of prev_gesture and current_gesture 1's and 0's.
-        prev_tuple: tuple[int] = self.gesture_list[self.prev_gesture]
-        current_tuple: tuple[int] = self.gesture_list[self.current_gesture]
 
-        # Contains a list of finger names based on their respective indexes.
-            # Wrapped the iterable list of keys using list() so that it can then be 
-            # subscriptable later using finger_names[y].
-        finger_names: list[str] = list(self.fingers.keys())
+        if self.current_gesture != "Unknown":
+            # Contains tuples of prev_gesture and current_gesture 1's and 0's.
+            prev_tuple: tuple[int] = self.gesture_list[self.prev_gesture]
+            current_tuple: tuple[int] = self.gesture_list[self.current_gesture]
 
-        for x in range(5):
-            if prev_tuple[x] == current_tuple[x]:
-                continue
-            elif prev_tuple[x] != current_tuple[x]:
-                finger_name: str = finger_names[x]
+            # Contains a list of finger names based on their respective indexes.
+                # Wrapped the iterable list of keys using list() so that it can then be 
+                # subscriptable later using finger_names[y].
+            finger_names: list[str] = list(self.fingers.keys())
 
-                if current_tuple[x] == 0:
-                    for j in range(0, 182, 2):
-                        self.fingers[finger_name].angle = j
-                        time.sleep(0.015)
+            for x in range(5):
+                if prev_tuple[x] == current_tuple[x]:
+                    continue
+                elif prev_tuple[x] != current_tuple[x]:
+                    finger_name: str = finger_names[x]
 
-                elif current_tuple[x] == 1:
-                    for m in range(180, -2, -2):
-                        self.fingers[finger_name].angle = m
-                        time.sleep(0.015)
+                    if current_tuple[x] == 0:
+                        for j in range(0, 182, 2):
+                            self.fingers[finger_name].angle = j
+                            time.sleep(0.015)
 
-                self.prev_gesture = self.current_gesture
+                    elif current_tuple[x] == 1:
+                        for m in range(180, -2, -2):
+                            self.fingers[finger_name].angle = m
+                            time.sleep(0.015)
+
+            self.prev_gesture = self.current_gesture
                     

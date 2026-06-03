@@ -37,7 +37,7 @@ class Recognize:
             x = camera.generator()
 
             while True:
-                frame = next(x) # Runs the generator up to yield and the returns the frame.
+                frame = next(x) # Runs the generator up to yield and then returns the frame.
                 
                 # Unix epoch time in milliseconds set to an int instead of a float
                 frame_timestamp_ms = int(time.time() * 1000)
