@@ -20,10 +20,14 @@ class Recognize:
                                            running_mode = self.VisionRunningMode.LIVE_STREAM,
                                            result_callback = self.result)
 
-    # Grabs the current gesture that the recognizer captured and sets it to the gesture instance variable.
+    # If a gesture is recognized by the camera the current gesture is set to 'gesture_str', else 'Nothing' is printed 
+    # because no gesture is being recognized.
     def result(self, result, output_image: mp.Image, timestamp_ms: int) -> None:
-        self.gesture_str = result.gestures[0][0].categoryName
-        print(self.gesture_str)
+        if result.gestures:
+            self.gesture_str = result.gestures[0][0].categoryName
+            print(self.gesture_str)
+        else:
+            print("Nothing")
 
     # This method reads the frames from the vision class's generator and uses the built in landmarks for gesture
     # recognition.
