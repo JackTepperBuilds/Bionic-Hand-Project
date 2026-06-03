@@ -12,7 +12,7 @@ class Recognize:
         self.GestureRecognizerResult = mp.tasks.vision.GestureRecognizerResult
         self.VisionRunningMode = mp.tasks.vision.RunningMode
 
-        self.gesture_str = "Open_Palm"
+        self.gesture_str = ""
         
         # The settings of the recognizer. Contains the location of the pretrained gesture models, sets the LIVE,
         # And calls the result method every time a new gesture is recognized.
