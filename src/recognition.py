@@ -12,7 +12,7 @@ class Recognize:
         self.GestureRecognizerResult = mp.tasks.vision.GestureRecognizerResult
         self.VisionRunningMode = mp.tasks.vision.RunningMode
 
-        self.gesture_str = ""
+        self.gesture_str = "Open_Palm"
         
         # The settings of the recognizer. Contains the location of the pretrained gesture models, sets the LIVE,
         # And calls the result method every time a new gesture is recognized.
@@ -24,7 +24,7 @@ class Recognize:
     # because no gesture is being recognized.
     def result(self, result, output_image: mp.Image, timestamp_ms: int) -> None:
         if result.gestures:
-            self.gesture_str = result.gestures[0][0].categoryName
+            self.gesture_str = result.gestures[0][0].category_name
             print(self.gesture_str)
         else:
             print("Nothing")
