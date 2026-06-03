@@ -38,7 +38,10 @@ class Hand:
     def run_hand(self, new_gesture) -> None:
         self.current_gesture = new_gesture
 
-        if self.current_gesture != "Unknown" or self.current_gesture != "None":
+        # Skips the gesture if "None" is recognized.
+        if self.current_gesture not in self.gesture_list:
+            return
+        else:
             # Contains tuples of prev_gesture and current_gesture 1's and 0's.
             prev_tuple: tuple[int] = self.gesture_list[self.prev_gesture]
             current_tuple: tuple[int] = self.gesture_list[self.current_gesture]
