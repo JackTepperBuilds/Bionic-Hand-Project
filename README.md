@@ -47,6 +47,7 @@ Camera Input → MediaPipe Hand Tracking → Gesture Recognition → Servo Contr
 The project is developed in iterative versions:
 
 - **MK0** → Initial prototype with basic MediaPipe gesture-to-servo mapping
+- **MK0.5** → OOP refactor of MK0 code featuring an error-based servo actuation algorithm to support future more complex gestures
 - **MK1** → Refactored MK0 code in C++, improved control, 17 degrees of freedom, and redesigned mechanical build
 
 Each version is tracked using Git tags and documented in the `docs/` folder.
