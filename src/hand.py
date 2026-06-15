@@ -17,12 +17,12 @@ class Hand:
 
         # gesture_list dictionary that contains every gesture and their respective tuple of what 
         # fingers whould be up (180 degrees) and what fingers should be down (0 degrees).
-        self.gesture_list: dict[str, tuple] = {"Open_Palm": (180, 180, 180, 180, 180),
-                                            "Closed_Fist": (0, 0, 0, 0, 0),
-                                            "Victory": (180, 180, 0, 0, 0),
-                                            "Thumb_Up": (0, 0, 0, 0, 180),
-                                            "Pointing_Up": (180, 0, 0, 0, 0),
-                                            "ILoveYou": (180, 0, 0, 180, 180)}
+        self.gesture_list: dict[str, tuple] = {"Open_Palm": (0, 0, 0, 0, 0),
+                                            "Closed_Fist": (180, 180, 180, 180, 180),
+                                            "Victory": (0, 0, 180, 180, 180),
+                                            "Thumb_Up": (180, 180, 180, 180, 0),
+                                            "Pointing_Up": (0, 180, 180, 180, 180),
+                                            "ILoveYou": (0, 180, 180, 0, 0)}
 
         # Fingers dictionary containing the channels of each servo on the driver as well as set
         # max and min pulses.
@@ -73,12 +73,12 @@ class Hand:
                         if current_tuple[x] == 180:
                             self.fingers[finger_name].angle = current_position[x] + 2
                             current_position[x] += 2
-                            time.sleep(0.015)
+                            time.sleep(0.01)
 
                         elif current_tuple[x] == 0:
                             self.fingers[finger_name].angle = current_position[x] - 2
                             current_position[x] -= 2
-                            time.sleep(0.015)
+                            time.sleep(0.01)
 
                 # If all fingers are done moving break the loop.
                 if done == True:
