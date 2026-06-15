@@ -60,7 +60,7 @@ class Hand:
                 # Calculates the error (displacement) from where the finger currently is and the target position.
                 # The servo is then stepped up or down by 2 degrees continuously until the desired angle is reached.
                 for x in range(5):
-                    error = target_position[x] - current_position[x]
+                    error = abs(target_position[x] - current_position[x])
 
                     # If the margin of error (less than or equal to 2 degrees) is reached
                     # continue because the finger is in target position.
@@ -71,12 +71,12 @@ class Hand:
                         finger_name: str = finger_names[x]
 
                         if current_tuple[x] == 180:
-                            self.fingers[finger_name].angle = current_position + 2
+                            self.fingers[finger_name].angle = current_position[x] + 2
                             current_position += 2
                             time.sleep(0.015)
 
                         elif current_tuple[x] == 0:
-                            self.fingers[finger_name].angle = current_position - 2
+                            self.fingers[finger_name].angle = current_position[x] - 2
                             current_position -= 2
                             time.sleep(0.015)
 
