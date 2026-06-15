@@ -72,12 +72,12 @@ class Hand:
 
                         if current_tuple[x] == 180:
                             self.fingers[finger_name].angle = current_position[x] + 2
-                            current_position[x] += 2
+                            current_position[x] += 4
                             time.sleep(0.01)
 
                         elif current_tuple[x] == 0:
                             self.fingers[finger_name].angle = current_position[x] - 2
-                            current_position[x] -= 2
+                            current_position[x] -= 4
                             time.sleep(0.01)
 
                 # If all fingers are done moving break the loop.
