@@ -11,18 +11,18 @@ class Hand:
     def __init__(self):
         i2c: busio.I2C = busio.I2C(board.SCL, board.SDA)
         pca: PCA9685 = PCA9685(i2c)
-        pca.frequency = 50
+        pca.frequency = 50 #Hz
         self.prev_gesture = "Open_Palm"
         self.current_gesture = "Open_Palm"
 
         # gesture_list dictionary that contains every gesture and their respective tuple of what 
-        # fingers whould be up (1) and what fingers should be down (0).
-        self.gesture_list: dict[str, tuple] = {"Open_Palm": (1, 1, 1, 1, 1),
-                                            "Closed_Fist": (0, 0, 0, 0, 0),
-                                            "Victory": (1, 1, 0, 0, 0),
-                                            "Thumb_Up": (0, 0, 0, 0, 1),
-                                            "Pointing_Up": (1, 0, 0, 0, 0),
-                                            "ILoveYou": (1, 0, 0, 1, 1)}
+        # fingers whould be up (180 degrees) and what fingers should be down (0 degrees).
+        self.gesture_list: dict[str, tuple] = {"Open_Palm": (0, 0, 0, 0, 0),
+                                            "Closed_Fist": (180, 180, 180, 180, 180),
+                                            "Victory": (0, 0, 180, 180, 180),
+                                            "Thumb_Up": (180, 180, 180, 180, 0),
+                                            "Pointing_Up": (0, 180, 180, 180, 180),
+                                            "ILoveYou": (0, 180, 180, 0, 0)}
 
         # Fingers dictionary containing the channels of each servo on the driver as well as set
         # max and min pulses.
@@ -42,7 +42,7 @@ class Hand:
         if self.current_gesture not in self.gesture_list:
             return
         else:
-            # Contains tuples of prev_gesture and current_gesture 1's and 0's.
+            # Contains tuples of prev_gesture and current_gesture degrees.
             prev_tuple: tuple[int] = self.gesture_list[self.prev_gesture]
             current_tuple: tuple[int] = self.gesture_list[self.current_gesture]
 
@@ -51,21 +51,38 @@ class Hand:
                 # subscriptable later using finger_names[y].
             finger_names: list[str] = list(self.fingers.keys())
 
-            for x in range(5):
-                if prev_tuple[x] == current_tuple[x]:
-                    continue
-                elif prev_tuple[x] != current_tuple[x]:
-                    finger_name: str = finger_names[x]
+            # Wraps prev and current tuples in lists and stores it to calculate error
+            current_position: list = list(prev_tuple)
+            target_position: list = list(current_tuple)
+            while True:
+                done: bool = True # True if 
 
-                    if current_tuple[x] == 0:
-                        for j in range(0, 182, 2):
-                            self.fingers[finger_name].angle = j
-                            time.sleep(0.015)
+                # Calculates the error (displacement) from where the finger currently is and the target position.
+                # The servo is then stepped up or down by 2 degrees continuously until the desired angle is reached.
+                for x in range(5):
+                    error = abs(target_position[x] - current_position[x])
 
-                    elif current_tuple[x] == 1:
-                        for m in range(180, -2, -2):
-                            self.fingers[finger_name].angle = m
-                            time.sleep(0.015)
+                    # If the margin of error (less than or equal to 2 degrees) is reached
+                    # continue because the finger is in target position.
+                    if error <= 2:
+                        continue
+                    else:
+                        done = False
+                        finger_name: str = finger_names[x]
 
-            self.prev_gesture = self.current_gesture
-                    
+                        if current_tuple[x] == 180:
+                            self.fingers[finger_name].angle = current_position[x] + 4
+                            current_position[x] += 4
+                            time.sleep(0.01)
+
+                        elif current_tuple[x] == 0:
+                            self.fingers[finger_name].angle = current_position[x] - 4
+                            current_position[x] -= 4
+                            time.sleep(0.01)
+
+                # If all fingers are done moving break the loop.
+                if done == True:
+                    break
+
+                self.prev_gesture = self.current_gesture
+            
