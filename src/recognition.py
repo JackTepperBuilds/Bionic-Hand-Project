@@ -6,28 +6,33 @@ import time
 
 class Recognize:
     def __init__(self):
-        self.BaseOptions = mp.tasks.BaseOptions
+        # Sets references to MediaPipes recognizer classes.
         self.GestureRecognizer = mp.tasks.vision.GestureRecognizer
         self.GestureRecognizerOptions = mp.tasks.vision.GestureRecognizerOptions
-        self.GestureRecognizerResult = mp.tasks.vision.GestureRecognizerResult
+
+        # Sets references to MediaPipes configuration classes.
+        self.BaseOptions = mp.tasks.BaseOptions
         self.VisionRunningMode = mp.tasks.vision.RunningMode
 
         self.gesture_str = "Open_Palm"
+        self.landmark_coordinates
         
         # The settings of the recognizer. Contains the location of the pretrained gesture models, sets the LIVE,
         # And calls the result method every time a new gesture is recognized.
         self.options = self.GestureRecognizerOptions(base_options = self.BaseOptions('gesture_recognizer.task'),
                                            running_mode = self.VisionRunningMode.LIVE_STREAM,
-                                           result_callback = self.result)
+                                           result_callback = self.print_result)
 
     # If a gesture is recognized by the camera the current gesture is set to 'gesture_str', else 'Nothing' is printed 
     # because no gesture is being recognized.
-    def result(self, result, output_image: mp.Image, timestamp_ms: int) -> None:
+    def print_result(self, result: GestureRecognizerResult, output_image: mp.Image, timestamp_ms: int) -> None:
         if result.gestures:
             self.gesture_str = result.gestures[0][0].category_name
             print(self.gesture_str)
         else:
             print("Nothing")
+
+        print(result.hand_landmarks[0][0])
 
     # This method reads the frames from the vision class's generator and uses the built in landmarks for gesture
     # recognition.
@@ -43,6 +48,8 @@ class Recognize:
                 frame_timestamp_ms = int(time.time() * 1000)
 
                 mp_image = mp.Image(image_format = mp.ImageFormat.SRGB, data = frame)
+
+                land
 
                 # Contains timestamps of captured frames in milliseconds so that mediapipe internally
                 # can drop unnecessary frames for lower latency if needed.
