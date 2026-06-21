@@ -16,8 +16,8 @@ def main():
 
         hand.run_hand(gesture)
 
-        # If end == 1, end the main loop while the vision generator ends.
-        if eyes.end == 1:
+        # If end_program == 1, end the main loop while the vision generator ends.
+        if eyes.end_program == 1:
             break
 
 # Main guard
