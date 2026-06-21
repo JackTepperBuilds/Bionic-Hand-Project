@@ -10,7 +10,7 @@ class Vision:
         self.picam2.configure(config)
         self.picam2.start()
 
-        self.end = 0
+        self.end_program = 0
 
     def generator(self) -> None:
         while True:
@@ -20,7 +20,7 @@ class Vision:
             yield frame
 
             if cv.waitKey(20) & 0xFF == ord('d'):
-                self.end = 1
+                self.end_program = 1
                 cv.destroyAllWindows()
                 break
                 
