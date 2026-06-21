@@ -31,7 +31,7 @@ class Recognize:
         else:
             print("Nothing")
 
-        if result.landmarks:
+        if result.hand_landmarks:
             print(result.hand_landmarks[0][4])
         else:
             print("NO LANDMARKS")
