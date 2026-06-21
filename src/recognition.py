@@ -31,7 +31,7 @@ class Recognize:
         else:
             print("Nothing")
 
-        print(result.hand_landmarks[0][0])
+        print(result.pose_landmarks[0][0])
 
     # This method reads the frames from the vision class's generator and uses the built in landmarks for gesture
     # recognition.
