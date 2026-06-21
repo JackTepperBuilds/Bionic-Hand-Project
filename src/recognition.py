@@ -15,7 +15,6 @@ class Recognize:
         self.VisionRunningMode = mp.tasks.vision.RunningMode
 
         self.gesture_str = "Open_Palm"
-        self.landmark_coordinates
         
         # The settings of the recognizer. Contains the location of the pretrained gesture models, sets the LIVE,
         # And calls the result method every time a new gesture is recognized.
@@ -25,7 +24,7 @@ class Recognize:
 
     # If a gesture is recognized by the camera the current gesture is set to 'gesture_str', else 'Nothing' is printed 
     # because no gesture is being recognized.
-    def print_result(self, result: GestureRecognizerResult, output_image: mp.Image, timestamp_ms: int) -> None:
+    def print_result(self, result, output_image: mp.Image, timestamp_ms: int) -> None:
         if result.gestures:
             self.gesture_str = result.gestures[0][0].category_name
             print(self.gesture_str)
