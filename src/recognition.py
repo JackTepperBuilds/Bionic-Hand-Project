@@ -48,8 +48,6 @@ class Recognize:
 
                 mp_image = mp.Image(image_format = mp.ImageFormat.SRGB, data = frame)
 
-                land
-
                 # Contains timestamps of captured frames in milliseconds so that mediapipe internally
                 # can drop unnecessary frames for lower latency if needed.
                 recognizer.recognize_async(mp_image, frame_timestamp_ms)
