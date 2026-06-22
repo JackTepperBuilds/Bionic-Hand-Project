@@ -38,28 +38,32 @@ class Recognize:
         else:
             print("NO LANDMARKS")
 
-    # This method reads the frames from the vision class's generator and uses the built in landmarks for gesture
-    # recognition.
+    # This method reads the frames from the vision class's generator and uses the built in landmarks for gesture recognition.
+    # NOTE: Do NOT use the a 'with' statement on the 'GestureRecognizer'. When trying to clean up the thread memory in main
+    # the recognizer still has left over frames (in its queue) after the camera and loop end. The thread tries to clean up memory in
+    # the recognizer that it doesnt have access to. Resulting in 'QObject::killTimer' & 'QObject::~QObject' errors. 
+    # So, '.close()' the recognizer manually.
     def recognize(self, event: threading.Event) -> None:
-        with self.GestureRecognizer.create_from_options(self.options) as recognizer:
-            camera = Vision()
-            x = camera.generator()
+        recognizer = self.GestureRecognizer.create_from_options(self.options)
+        camera = Vision()
+        x = camera.generator()
 
-            while True:
-                try:
-                    frame = next(x) # Runs the generator up to yield and then returns the frame.
+        while True:
+            try:
+                frame = next(x) # Runs the generator up to yield and then returns the frame.
                 
-                    # Unix epoch time in milliseconds set to an int instead of a float
-                    frame_timestamp_ms = int(time.time() * 1000)
+                # Unix epoch time in milliseconds set to an int instead of a float
+                frame_timestamp_ms = int(time.time() * 1000)
 
-                    mp_image = mp.Image(image_format = mp.ImageFormat.SRGB, data = frame)
+                mp_image = mp.Image(image_format = mp.ImageFormat.SRGB, data = frame)
 
-                    # Contains timestamps of captured frames in milliseconds so that mediapipe internally
-                    # can drop unnecessary frames for lower latency if needed.
-                    recognizer.recognize_async(mp_image, frame_timestamp_ms)
+                # Contains timestamps of captured frames in milliseconds so that mediapipe internally
+                # can drop unnecessary frames for lower latency if needed.
+                recognizer.recognize_async(mp_image, frame_timestamp_ms)
 
-                except StopIteration:
-                    if camera.end_program == 1:
-                        self.end_check = 1
-                    time.sleep(1)
-                    break
+            except StopIteration:
+                if camera.end_program == 1:
+                    self.end_check = 1
+                break
+
+        recognizer.close()
