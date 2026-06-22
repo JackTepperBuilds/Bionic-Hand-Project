@@ -21,7 +21,6 @@ class Vision:
 
             if cv.waitKey(20) & 0xFF == ord('d'):
                 self.end_program = 1
-                cv.destroyAllWindows()
                 break
                 
         self.picam2.stop()
