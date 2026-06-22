@@ -60,5 +60,5 @@ class Recognize:
 
                 except StopIteration:
                     if camera.end_program == 1:
-                    self.end_check = 1
+                        self.end_check = 1
                     break
