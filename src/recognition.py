@@ -3,6 +3,7 @@ from mediapipe.tasks import python
 from mediapipe.tasks.python import vision
 from vision import Vision
 import time
+import threading
 
 class Recognize:
     def __init__(self):
@@ -39,12 +40,12 @@ class Recognize:
 
     # This method reads the frames from the vision class's generator and uses the built in landmarks for gesture
     # recognition.
-    def recognize(self) -> None:
+    def recognize(self, event: threading.Event) -> None:
         with self.GestureRecognizer.create_from_options(self.options) as recognizer:
             camera = Vision()
             x = camera.generator()
 
-            while True:
+            while not event.is_set():
                 frame = next(x) # Runs the generator up to yield and then returns the frame.
                 
                 # Unix epoch time in milliseconds set to an int instead of a float
@@ -58,3 +59,4 @@ class Recognize:
 
                 if camera.end_program == 1:
                     self.end_check = 1
+                    break

@@ -6,7 +6,10 @@ def main():
     hand = Hand()
     recognizer = Recognize()
 
-    recog_loop = threading.Thread(target = recognizer.recognize)
+    # Event object for controlling the thread (Default = False)
+    event = threading.Event()
+
+    recog_loop = threading.Thread(target = recognizer.recognize, args = (event, ))
     recog_loop.start() # Runs the recognizer paired with the camera.
 
     while True:
@@ -14,8 +17,12 @@ def main():
 
         hand.run_hand(gesture)
 
+        # If user presses 'd' to end camera, set the event and wait for the recog_loop to end
+        # before breaking main loop.
         if recognizer.end_check == 1:
+            event.set()
             recog_loop.join()
+            print("Thread is closing...")
             break
 
 # Main guard
