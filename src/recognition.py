@@ -45,7 +45,7 @@ class Recognize:
             camera = Vision()
             x = camera.generator()
 
-            while not event.is_set():
+            while True:
                 try:
                     frame = next(x) # Runs the generator up to yield and then returns the frame.
                 
@@ -62,3 +62,5 @@ class Recognize:
                     if camera.end_program == 1:
                         self.end_check = 1
                     break
+
+            self.GestureRecognizer.close()
