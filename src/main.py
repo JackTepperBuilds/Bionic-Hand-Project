@@ -18,7 +18,7 @@ def main():
         hand.run_hand(gesture)
 
         # If user presses 'd' to end camera, set the event and wait for the recog_loop to end
-        # before breaking main loop.
+        # before breaking main loop (.join to clean up threading memory).
         if recognizer.end_check == 1:
             event.set()
             recog_loop.join()
