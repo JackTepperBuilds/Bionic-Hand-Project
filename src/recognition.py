@@ -15,6 +15,7 @@ class Recognize:
         self.VisionRunningMode = mp.tasks.vision.RunningMode
 
         self.gesture_str = "Open_Palm"
+        self.end_check = 0
         
         # The settings of the recognizer. Contains the location of the pretrained gesture models, sets the LIVE,
         # And calls the result method every time a new gesture is recognized.
@@ -54,3 +55,6 @@ class Recognize:
                 # Contains timestamps of captured frames in milliseconds so that mediapipe internally
                 # can drop unnecessary frames for lower latency if needed.
                 recognizer.recognize_async(mp_image, frame_timestamp_ms)
+
+                if camera.end_program == 1:
+                    end_check = 1
