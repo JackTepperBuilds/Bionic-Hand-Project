@@ -57,4 +57,4 @@ class Recognize:
                 recognizer.recognize_async(mp_image, frame_timestamp_ms)
 
                 if camera.end_program == 1:
-                    end_check = 1
+                    self.end_check = 1
