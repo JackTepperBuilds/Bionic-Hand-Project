@@ -63,4 +63,4 @@ class Recognize:
                         self.end_check = 1
                     break
 
-            self.GestureRecognizer.close()
+            recognizer.close()
