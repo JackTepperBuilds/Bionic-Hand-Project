@@ -20,6 +20,8 @@ class Vision:
             cv.imshow('Live Feed', frame)
             yield frame
 
+            # TODO: make a conditional for 'event.is_set()' so that the camera loop ends when the recognition
+            # thread ends instead of ending abruptly.
             if cv.waitKey(20) & 0xFF == ord('d'):
                 self.end_program = 1
                 break
