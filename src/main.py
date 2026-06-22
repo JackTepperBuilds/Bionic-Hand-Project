@@ -15,6 +15,7 @@ def main():
         hand.run_hand(gesture)
 
         if recognizer.end_check == 1:
+            recog_loop.join()
             break
 
 # Main guard
