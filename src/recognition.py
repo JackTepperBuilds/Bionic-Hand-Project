@@ -44,12 +44,11 @@ class Recognize:
     # the recognizer that it doesnt have access to. Resulting in 'QObject::killTimer' & 'QObject::~QObject' errors. 
     # So, '.close()' the recognizer manually.
     def recognize(self, event: threading.Event) -> None:
-        recognizer = self.GestureRecognizer.create_from_options(self.options)
-        camera = Vision()
-        x = camera.generator()
+        with self.GestureRecognizer.create_from_options(self.options) as recognizer:
+            camera = Vision()
+            x = camera.generator(event)
 
-        while True:
-            try:
+            while not event.is_set():
                 frame = next(x) # Runs the generator up to yield and then returns the frame.
                 
                 # Unix epoch time in milliseconds set to an int instead of a float
@@ -61,9 +60,8 @@ class Recognize:
                 # can drop unnecessary frames for lower latency if needed.
                 recognizer.recognize_async(mp_image, frame_timestamp_ms)
 
-            except StopIteration:
                 if camera.end_program == 1:
                     self.end_check = 1
-                break
+                    break
 
         recognizer.close()
