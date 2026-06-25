@@ -63,7 +63,6 @@ class Recognize:
         finally:
             # Terminate the generator and camera after recognizer ends.
             recognizer.close()
-            time.sleep(1)
             x.close()
             camera.picam2.stop()
             cv.destroyAllWindows()
