@@ -42,7 +42,7 @@ class Recognize:
     def recognize(self, event: threading.Event) -> None:
         with self.GestureRecognizer.create_from_options(self.options) as recognizer:
             camera = Vision()
-            x = camera.generator()
+            x = camera.generator(True)
 
             while not event.is_set():
                 frame = next(x) # Runs the generator up to yield and then returns the frame.
