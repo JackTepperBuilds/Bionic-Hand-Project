@@ -1,6 +1,7 @@
 from hand import Hand
 from recognition import Recognize
 import threading
+import cv2 as cv
 
 def main():
     hand = Hand()
@@ -22,6 +23,7 @@ def main():
         if recognizer.end_check == 1:
             event.set()
             recog_loop.join()
+            cv.destroyAllWindows()
             break
 
 # Main guard

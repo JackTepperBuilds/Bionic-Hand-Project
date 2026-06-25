@@ -2,7 +2,6 @@ import mediapipe as mp
 from mediapipe.tasks import python
 from mediapipe.tasks.python import vision
 from vision import Vision
-import cv2 as cv
 import time
 import threading
 
@@ -45,6 +44,7 @@ class Recognize:
         camera = Vision(True)
         x = camera.generator()
 
+        # 'Try' the code and no matter what error arises make sure to 'finally' clean everything up.
         try:
             while not event.is_set():
                 frame = next(x) # Runs the generator up to yield and then returns the frame.
@@ -65,4 +65,3 @@ class Recognize:
             recognizer.close()
             x.close()
             camera.picam2.stop()
-            cv.destroyAllWindows()
