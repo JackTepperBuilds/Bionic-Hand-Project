@@ -21,7 +21,6 @@ def main():
         # before breaking main loop (.join waits for the thread to stop and clean memory).
         if recognizer.end_check == 1:
             event.set()
-            print("Thread is closing...")
             recog_loop.join()
             break
 
