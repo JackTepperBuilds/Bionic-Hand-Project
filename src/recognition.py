@@ -39,10 +39,6 @@ class Recognize:
             print("NO LANDMARKS")
 
     # This method reads the frames from the vision class's generator and uses the built in landmarks for gesture recognition.
-    # NOTE: Do NOT use the a 'with' statement on the 'GestureRecognizer'. When trying to clean up the thread memory in main
-    # the recognizer still has left over frames (in its queue) after the camera and loop end. The thread tries to clean up memory in
-    # the recognizer that it doesnt have access to. Resulting in 'QObject::killTimer' & 'QObject::~QObject' errors. 
-    # So, '.close()' the recognizer manually.
     def recognize(self, event: threading.Event) -> None:
         with self.GestureRecognizer.create_from_options(self.options) as recognizer:
             camera = Vision()
@@ -64,4 +60,4 @@ class Recognize:
                     self.end_check = 1
                     break
 
-        recognizer.close()
+            recognizer.close()
