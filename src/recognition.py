@@ -41,26 +41,27 @@ class Recognize:
 
     # This method reads the frames from the vision class's generator and uses the built in landmarks for gesture recognition.
     def recognize(self, event: threading.Event) -> None:
-        with self.GestureRecognizer.create_from_options(self.options) as recognizer:
-            camera = Vision(True)
-            x = camera.generator()
+        recognizer = self.GestureRecognizer.create_from_options(self.options)
+        camera = Vision(True)
+        x = camera.generator()
 
-            while not event.is_set():
-                frame = next(x) # Runs the generator up to yield and then returns the frame.
+        while not event.is_set():
+            frame = next(x) # Runs the generator up to yield and then returns the frame.
                 
-                # Unix epoch time in milliseconds set to an int instead of a float
-                frame_timestamp_ms = int(time.time() * 1000)
+            # Unix epoch time in milliseconds set to an int instead of a float
+            frame_timestamp_ms = int(time.time() * 1000)
 
-                mp_image = mp.Image(image_format = mp.ImageFormat.SRGB, data = frame)
+            mp_image = mp.Image(image_format = mp.ImageFormat.SRGB, data = frame)
 
-                # Contains timestamps of captured frames in milliseconds so that mediapipe internally
-                # can drop unnecessary frames for lower latency if needed.
-                recognizer.recognize_async(mp_image, frame_timestamp_ms)
+            # Contains timestamps of captured frames in milliseconds so that mediapipe internally
+            # can drop unnecessary frames for lower latency if needed.
+            recognizer.recognize_async(mp_image, frame_timestamp_ms)
 
-                if camera.end_program == 1:
-                    self.end_check = 1
+            if camera.end_program == 1:
+                self.end_check = 1
 
-            # Terminate the generator.
-            x.close()
-            camera.picam2.stop()
-            cv.destroyAllWindows()
+        # Terminate the generator and camera after recognizer ends.\
+        recognizer.close()
+        x.close()
+        camera.picam2.stop()
+        cv.destroyAllWindows()
