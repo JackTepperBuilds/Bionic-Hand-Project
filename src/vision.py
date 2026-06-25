@@ -5,7 +5,7 @@ from typing import Iterator
 
 class Vision:
     # Constructor initializes the camera, sets the config, passes the config to the camera, then starts the camera.
-    def __init__(self, runner):
+    def __init__(self, runner: bool):
         self.picam2 = Picamera2()
         config = self.picam2.create_preview_configuration({'size': (640, 480), 'format': 'RGB888'}, transform = Transform(hflip = True))
         self.picam2.configure(config)
