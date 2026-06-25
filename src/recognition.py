@@ -2,6 +2,7 @@ import mediapipe as mp
 from mediapipe.tasks import python
 from mediapipe.tasks.python import vision
 from vision import Vision
+import cv2 as cv
 import time
 import threading
 
@@ -61,3 +62,5 @@ class Recognize:
 
             # Terminate the generator.
             x.close()
+            camera.picam2.stop()
+            cv.destroyAllWindows()

@@ -1,6 +1,5 @@
 from hand import Hand
 from recognition import Recognize
-from vision import Vision
 import threading
 
 def main():
@@ -24,7 +23,6 @@ def main():
             event.set()
             print("Thread is closing...")
             recog_loop.join()
-            Vision(False)
             break
 
 # Main guard
