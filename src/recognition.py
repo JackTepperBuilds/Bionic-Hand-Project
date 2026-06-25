@@ -58,6 +58,3 @@ class Recognize:
 
                 if camera.end_program == 1:
                     self.end_check = 1
-                    break
-
-            recognizer.close()
