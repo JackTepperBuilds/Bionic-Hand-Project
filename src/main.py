@@ -1,7 +1,7 @@
 from hand import Hand
 from recognition import Recognize
+from vision import Vision
 import threading
-import time
 
 def main():
     hand = Hand()
@@ -22,9 +22,9 @@ def main():
         # before breaking main loop (.join waits for the thread to stop and clean memory).
         if recognizer.end_check == 1:
             event.set()
-            time.sleep(0.1)
             print("Thread is closing...")
             recog_loop.join()
+            Vision(False)
             break
 
 # Main guard
