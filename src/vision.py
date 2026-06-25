@@ -12,10 +12,9 @@ class Vision:
         self.picam2.start()
 
         self.end_program = 0
-        self.runner = True
 
     def generator(self, ) -> Iterator:
-        while self.runner:
+        while True:
             frame = self.picam2.capture_array()
 
             cv.imshow('Live Feed', frame)
@@ -23,6 +22,3 @@ class Vision:
 
             if cv.waitKey(20) & 0xFF == ord('d'):
                 self.end_program = 1
-                
-        self.picam2.stop()
-        cv.destroyAllWindows()
