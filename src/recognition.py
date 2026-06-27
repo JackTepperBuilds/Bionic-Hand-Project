@@ -41,7 +41,7 @@ class Recognize:
     def recognize(self, event: threading.Event, eyes: Vision) -> None:
         recognizer = self.GestureRecognizer.create_from_options(self.options)
 
-        prev_timestamp = None
+        prev_timestamp = 0
         # 'Try' the code and no matter what error arises make sure to 'finally' clean everything up.
         try:
             while not event.is_set():
