@@ -46,7 +46,7 @@ class Recognize:
         try:
             while not event.is_set():
                 # Unix epoch time in milliseconds set to an int instead of a float
-                frame_timestamp_ms = int(time.time() * 1000)
+                frame_timestamp_ms = int(time.monotonic() * 1000)
 
                 if prev_timestamp >= frame_timestamp_ms:
                     continue
