@@ -11,14 +11,11 @@ class Vision:
         self.picam2.configure(config)
         self.picam2.start()
 
+        self.frame = None
         self.end_program = 0
 
     def generator(self, ) -> Iterator:
         while True:
-            frame = self.picam2.capture_array()
-
-            cv.imshow('Live Feed', frame)
-            yield frame
-
-            if cv.waitKey(20) & 0xFF == ord('d'):
-                self.end_program = 1
+            self.frame = self.picam2.capture_array()
+            
+            yield self.frame
