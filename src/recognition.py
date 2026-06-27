@@ -41,18 +41,20 @@ class Recognize:
     def recognize(self, event: threading.Event, eyes: Vision) -> None:
         recognizer = self.GestureRecognizer.create_from_options(self.options)
 
-        #prev_timestamp = 0
+        prev_timestamp = 0
         # 'Try' the code and no matter what error arises make sure to 'finally' clean everything up.
         try:
             while not event.is_set():
                 frame = eyes.frame
+
                 # Unix epoch time in milliseconds set to an int instead of a float
                 frame_timestamp_ms = int(time.monotonic() * 1000)
-                #if prev_timestamp >= frame_timestamp_ms:
-                    #continue
-                #else:
-                    #frame = eyes.frame
-                    #prev_timestamp = frame_timestamp_ms
+                
+                # Ensure the new frame is ALWAYS after the previous.
+                if prev_timestamp >= frame_timestamp_ms:
+                    frame_timestamp_ms = prev_timestamp + 1
+
+                prev_timestamp = frame_timestamp_ms
 
                 mp_image = mp.Image(image_format = mp.ImageFormat.SRGB, data = frame)
 
