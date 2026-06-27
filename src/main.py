@@ -23,8 +23,8 @@ def main():
         gesture = recognizer.gesture_str
 
         hand.run_hand(gesture)
-        
-        cv.imread("LIVE", current_frame)
+
+        cv.imshow('LIVE', current_frame)
         current_frame = next(x)
         
 
