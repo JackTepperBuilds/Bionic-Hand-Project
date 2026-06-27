@@ -40,8 +40,7 @@ class Recognize:
     # This method reads the frames from the vision class's generator and uses the built in landmarks for gesture recognition.
     def recognize(self, event: threading.Event, end_check: int, frame) -> None:
         recognizer = self.GestureRecognizer.create_from_options(self.options)
-        camera = Vision(True)
-        x = camera.generator()
+        camera = Vision()
 
         # 'Try' the code and no matter what error arises make sure to 'finally' clean everything up.
         try:
@@ -57,5 +56,4 @@ class Recognize:
         finally:
             # Terminate the generator and camera after recognizer ends.
             recognizer.close()
-            x.close()
             camera.picam2.stop()
