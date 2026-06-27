@@ -12,11 +12,10 @@ def main():
     # Event object for controlling the thread (Default = False)
     event = threading.Event()
 
-    current_frame = eyes.frame
     x = eyes.generator()
     end_check = 0
 
-    recog_loop = threading.Thread(target = recognizer.recognize, args = (event, ))
+    recog_loop = threading.Thread(target = recognizer.recognize, args = (event, eyes))
     recog_loop.start() # Runs the recognizer.
 
     while True:
@@ -26,7 +25,6 @@ def main():
 
         current_frame = next(x)
         cv.imshow('LIVE', current_frame)
-        recognizer.recognize(current_frame)
         
         if cv.waitKey(20) & 0xFF == ord('d'):
             end_check = 1
