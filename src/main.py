@@ -16,7 +16,7 @@ def main():
     x = eyes.generator()
     end_check = 0
 
-    recog_loop = threading.Thread(target = recognizer.recognize, args = (event, end_check, current_frame))
+    recog_loop = threading.Thread(target = recognizer.recognize, args = (event, ))
     recog_loop.start() # Runs the recognizer.
 
     while True:
@@ -24,10 +24,10 @@ def main():
 
         hand.run_hand(gesture)
 
-        cv.imshow('LIVE', current_frame)
         current_frame = next(x)
+        cv.imshow('LIVE', current_frame)
+        recognizer.recognize(current_frame)
         
-
         if cv.waitKey(20) & 0xFF == ord('d'):
             end_check = 1
 

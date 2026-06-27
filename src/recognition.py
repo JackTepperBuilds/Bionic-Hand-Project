@@ -38,7 +38,7 @@ class Recognize:
             print("NO LANDMARKS")
 
     # This method reads the frames from the vision class's generator and uses the built in landmarks for gesture recognition.
-    def recognize(self, event: threading.Event, end_check: int, frame) -> None:
+    def recognize(self, event: threading.Event, frame) -> None:
         recognizer = self.GestureRecognizer.create_from_options(self.options)
 
         # 'Try' the code and no matter what error arises make sure to 'finally' clean everything up.
@@ -53,5 +53,5 @@ class Recognize:
                 # can drop unnecessary frames for lower latency if needed.
                 recognizer.recognize_async(mp_image, frame_timestamp_ms)    
         finally:
-            # Terminate the generator and camera after recognizer ends.
+            # Close the recognizer.
             recognizer.close()
