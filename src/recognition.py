@@ -38,12 +38,13 @@ class Recognize:
             print("NO LANDMARKS")
 
     # This method reads the frames from the vision class's generator and uses the built in landmarks for gesture recognition.
-    def recognize(self, event: threading.Event, frame) -> None:
+    def recognize(self, event: threading.Event, eyes: Vision) -> None:
         recognizer = self.GestureRecognizer.create_from_options(self.options)
 
         # 'Try' the code and no matter what error arises make sure to 'finally' clean everything up.
         try:
             while not event.is_set():
+                frame = eyes.frame
                 # Unix epoch time in milliseconds set to an int instead of a float
                 frame_timestamp_ms = int(time.time() * 1000)
 
