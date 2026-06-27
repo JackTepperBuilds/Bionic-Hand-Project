@@ -24,8 +24,8 @@ def main():
 
         hand.run_hand(gesture)
 
-        cv.imread("LIVE", current_frame)
         current_frame = next(x)
+        cv.imread("LIVE", current_frame)
 
         if cv.waitKey(20) & 0xFF == ord('d'):
             end_check = 1
@@ -35,7 +35,7 @@ def main():
         if end_check == 1:
             event.set()
             recog_loop.join()
-            cv.destroyAllWindows()
+            cv.destroyAllWindows() 
             break
 
 # Main guard
