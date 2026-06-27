@@ -13,6 +13,7 @@ def main():
     event = threading.Event()
 
     x = eyes.generator()
+    next(x)
     end_check = 0
 
     recog_loop = threading.Thread(target = recognizer.recognize, args = (event, eyes))
