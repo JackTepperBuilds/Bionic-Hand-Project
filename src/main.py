@@ -5,7 +5,6 @@ import threading
 import cv2 as cv
 
 def main():
-    hand = Hand()
     recognizer = Recognize()
     eyes = Vision()
     
@@ -20,9 +19,7 @@ def main():
     recog_loop.start() # Runs the recognizer.
 
     while True:
-        gesture = recognizer.gesture_str
-
-        hand.run_hand(gesture)
+        hand_wrapper(recognizer)
 
         current_frame = next(x)
         cv.imshow('LIVE', current_frame)
@@ -38,6 +35,18 @@ def main():
             eyes.picam2.stop()
             cv.destroyAllWindows() 
             break
+
+# TODO: Thread the run_hand method in the Hand class so that when a gesture runs the camera wont freeze.
+# Also check if the thread '.is_alive' to make sure if the gesture is still actuating or not.
+# This is to prevent unwanted jittering and conflicts with actuation. 
+
+# Separate running the hand and opening the camera window to remove conflicts.
+def hand_wrapper(recognizer: Hand):
+    hand = Hand()
+
+    gesture = recognizer.gesture_str
+
+    hand.run_hand(gesture)
 
 # Main guard
 if __name__ == "__main__":

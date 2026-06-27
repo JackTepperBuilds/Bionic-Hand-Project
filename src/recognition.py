@@ -2,6 +2,7 @@ import mediapipe as mp
 from mediapipe.tasks import python
 from mediapipe.tasks.python import vision
 from vision import Vision
+import cv2 as cv
 import time
 import threading
 
@@ -42,10 +43,17 @@ class Recognize:
         recognizer = self.GestureRecognizer.create_from_options(self.options)
 
         prev_timestamp = 0
+        prev_frame = None
         # 'Try' the code and no matter what error arises make sure to 'finally' clean everything up.
         try:
             while not event.is_set():
                 frame = eyes.frame
+
+                if frame is None or frame is prev_frame:
+                    time.sleep(0.01)
+                    continue
+
+                prev_frame = frame
 
                 # Unix epoch time in milliseconds set to an int instead of a float
                 frame_timestamp_ms = int(time.monotonic() * 1000)
@@ -56,11 +64,15 @@ class Recognize:
 
                 prev_timestamp = frame_timestamp_ms
 
-                mp_image = mp.Image(image_format = mp.ImageFormat.SRGB, data = frame)
+                # OpenCV prefers BGR frames but MediaPipe expects RBG so convert before using.
+                mp_frame = cv.cvtColor(frame, cv.COLOR_BGR2RGB)
+                mp_image = mp.Image(image_format = mp.ImageFormat.SRGB, data = mp_frame)
 
                 # Contains timestamps of captured frames in milliseconds so that mediapipe internally
                 # can drop unnecessary frames for lower latency if needed.
                 recognizer.recognize_async(mp_image, frame_timestamp_ms)    
+
+                time.sleep(0.06)
         finally:
             # Close the recognizer.
             recognizer.close()

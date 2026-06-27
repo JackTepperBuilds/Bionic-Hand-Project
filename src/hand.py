@@ -42,6 +42,10 @@ class Hand:
         if self.current_gesture not in self.gesture_list:
             return
         else:
+            if self.current_gesture == self.prev_gesture:
+                time.sleep(0.05)
+                return
+
             # Contains tuples of prev_gesture and current_gesture degrees.
             prev_tuple: tuple[int] = self.gesture_list[self.prev_gesture]
             current_tuple: tuple[int] = self.gesture_list[self.current_gesture]
@@ -84,5 +88,5 @@ class Hand:
                 if done == True:
                     break
 
-                self.prev_gesture = self.current_gesture
+            self.prev_gesture = self.current_gesture
             
