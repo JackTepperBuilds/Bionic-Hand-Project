@@ -16,7 +16,6 @@ class Recognize:
         self.VisionRunningMode = mp.tasks.vision.RunningMode
 
         self.gesture_str = "Open_Palm"
-        self.end_check = 0
         
         # The settings of the recognizer. Contains the location of the pretrained gesture models, sets the LIVE,
         # And calls the result method every time a new gesture is recognized.
@@ -39,7 +38,7 @@ class Recognize:
             print("NO LANDMARKS")
 
     # This method reads the frames from the vision class's generator and uses the built in landmarks for gesture recognition.
-    def recognize(self, event: threading.Event) -> None:
+    def recognize(self, event: threading.Event, end_check: int, frame) -> None:
         recognizer = self.GestureRecognizer.create_from_options(self.options)
         camera = Vision(True)
         x = camera.generator()
@@ -47,8 +46,6 @@ class Recognize:
         # 'Try' the code and no matter what error arises make sure to 'finally' clean everything up.
         try:
             while not event.is_set():
-                frame = next(x) # Runs the generator up to yield and then returns the frame.
-                
                 # Unix epoch time in milliseconds set to an int instead of a float
                 frame_timestamp_ms = int(time.time() * 1000)
 
@@ -56,10 +53,7 @@ class Recognize:
 
                 # Contains timestamps of captured frames in milliseconds so that mediapipe internally
                 # can drop unnecessary frames for lower latency if needed.
-                recognizer.recognize_async(mp_image, frame_timestamp_ms)
-
-                if camera.end_program == 1:
-                    self.end_check = 1
+                recognizer.recognize_async(mp_image, frame_timestamp_ms)    
         finally:
             # Terminate the generator and camera after recognizer ends.
             recognizer.close()
