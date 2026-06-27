@@ -23,9 +23,10 @@ def main():
         gesture = recognizer.gesture_str
 
         hand.run_hand(gesture)
-
-        current_frame = next(x)
+        
         cv.imread("LIVE", current_frame)
+        current_frame = next(x)
+        
 
         if cv.waitKey(20) & 0xFF == ord('d'):
             end_check = 1
@@ -35,6 +36,7 @@ def main():
         if end_check == 1:
             event.set()
             recog_loop.join()
+            eyes.picam2.stop()
             cv.destroyAllWindows() 
             break
 
