@@ -1,6 +1,7 @@
 import cv2 as cv
 from picamera2 import Picamera2
 from libcamera import Transform
+from typing import Iterator
 
 class Vision:
     # Constructor initializes the camera, sets the config, passes the config to the camera, then starts the camera.
@@ -10,16 +11,11 @@ class Vision:
         self.picam2.configure(config)
         self.picam2.start()
 
-    def generator(self) -> None:
+        self.frame = None
+        self.end_program = 0
+
+    def generator(self) -> Iterator:
         while True:
-            frame = self.picam2.capture_array()
+            self.frame = self.picam2.capture_array()
 
-            cv.imshow('Live Feed', frame)
-            yield frame
-
-            if cv.waitKey(20) & 0xFF == ord('d'):
-                cv.destroyAllWindows()
-                break
-                
-        self.picam2.stop()
-        cv.destroyAllWindows()
+            yield self.frame
