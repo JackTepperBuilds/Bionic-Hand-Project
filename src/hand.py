@@ -3,6 +3,7 @@ import board # For GPIO control (SCL & SDA)
 import busio # For I2C control
 from adafruit_pca9685 import PCA9685 # Servo driver that contains I2C
 from adafruit_motor import servo
+import threading
 
 # innit is the constructor containing the parameters all my gesture methods will need.
 # Sets up i2c communication and passes it into the sevo driver (pca) and current_gesture
@@ -32,6 +33,7 @@ class Hand:
                         "pinky": servo.Servo(pca.channels[3], min_pulse = 500, max_pulse = 2500),
                         "thumb": servo.Servo(pca.channels[2], min_pulse = 500, max_pulse = 2500)}
 
+        self.actuation = threading.Thread()
 
     # A method containing a nested for loop with an outer loop that contains a 5 finger array 
     # of the last gesture and an inner loop of a 5 finger array of the gesture I am trying to perform.
@@ -89,4 +91,5 @@ class Hand:
                     break
 
             self.prev_gesture = self.current_gesture
+            self.actuation.join()
             
