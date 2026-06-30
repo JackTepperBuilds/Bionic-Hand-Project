@@ -31,6 +31,8 @@ Camera Input → MediaPipe Hand Tracking → Gesture Recognition → Servo Contr
 - MediaPipe
 - Raspberry Pi 5
 - PCA9685 Servo Driver
+- MG995 Servos
+- Raspberry Pi Camera Module 2
 
 ---
 
