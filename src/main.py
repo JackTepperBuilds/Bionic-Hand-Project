@@ -12,7 +12,7 @@ def main():
     # Event object for controlling the thread (Default = False)
     event = threading.Event()
 
-    x = eyes.generator()
+    x = eyes.generator(recognizer)
     next(x)
     end_check = 0
 
@@ -27,6 +27,13 @@ def main():
         
         if cv.waitKey(20) & 0xFF == ord('d'):
             end_check = 1
+
+        if recognizer.no_gesture == 0:
+            print(recognizer.gesture_str)
+        if recognizer.warn == 1:
+            print("Error: No Landmarks")
+        else: 
+            print("No Gesture Recognized")
 
         # If user presses 'd' to end camera, set the event (to true) and wait for the recog_loop to end
         # before breaking main loop (.join waits for the thread to stop and clean memory).
