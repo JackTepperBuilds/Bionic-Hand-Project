@@ -15,8 +15,6 @@ class Recognize:
         # Sets references to MediaPipes configuration classes.
         self.BaseOptions = mp.tasks.BaseOptions
         self.VisionRunningMode = mp.tasks.vision.RunningMode
-
-        self.gesture_str = "Open_Palm"
         
         # The settings of the recognizer. Contains the location of the pretrained gesture models, sets the LIVE,
         # And calls the result method every time a new gesture is recognized.
@@ -45,6 +43,9 @@ class Recognize:
                                 "PINKY_PIP": None,
                                 "PINKY_DIP": None,
                                 "PINKY_TIP": None}
+        
+        self.gesture_str = "Open_Palm"
+        self.gesture_score = None
     
         self.no_gesture = 0
         self.warn = 0
@@ -57,7 +58,7 @@ class Recognize:
             self.no_gesture = 0 
 
             self.gesture_str = result.gestures[0][0].category_name
-            print(self.gesture_str)
+            self.gesture_score = result.gestures[0][0].score
         else:
             self.no_gesture = 1
 

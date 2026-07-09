@@ -14,11 +14,6 @@ class Vision:
         self.frame = None
         self.end_program = 0
 
-# TODO: To resolve the line function coordinates not working I need to get the individual x and y coordinates from the returned list form MediaPipe
-#       containing the x, y, z, etc. I can either do this in recognizer by only storing the x and y coordinated in the dictionary in 'recognizer.py'
-#       or doing it in 'vision.py'. After doing that I need to convert the normalized coordinate values from MediaPipe which are values '0-1' to 
-#       pixel values since that is what OpenCV needs. I can convert the coordinates to pixel values by doing *Ex: wrist_x = int(coordinate * frame_width)
-#       and wrist_y = int(coordinate * frame_height) *. 
     def generator(self, recognize) -> Iterator:
         GREEN = (0, 255, 0)
         RED = (0, 0, 255)
@@ -117,5 +112,10 @@ class Vision:
                 cv.circle(self.frame, pinky_pip, 10, RED, -1)
                 cv.circle(self.frame, pinky_dip, 10, RED, -1)
                 cv.circle(self.frame, pinky_tip, 10, RED, -1)
+
+                # Display gesture name
+                p0 = (600, 480)
+                font = cv.FONT_HERSHEY_SIMPLEX
+                cv.putText(self.frame, recognize.gesture_str, p0, font, 4, RED, 2)
 
             yield self.frame
