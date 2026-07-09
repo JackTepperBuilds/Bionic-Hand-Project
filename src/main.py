@@ -20,20 +20,13 @@ def main():
     recog_loop.start() # Runs the recognizer.
 
     while True:
-        hand_wrapper(recognizer, hand)
+        hand_wrapper(recognizer, hand, event)
 
         current_frame = next(x)
         cv.imshow('LIVE', current_frame)
         
         if cv.waitKey(20) & 0xFF == ord('d'):
             end_check = 1
-
-        if recognizer.no_gesture == 0:
-            print(recognizer.gesture_str)
-        if recognizer.warn == 1:
-            print("Error: No Landmarks")
-        else: 
-            print("No Gesture Recognized")
 
         # If user presses 'd' to end camera, set the event (to true) and wait for the recog_loop to end
         # before breaking main loop (.join waits for the thread to stop and clean memory).
@@ -45,13 +38,15 @@ def main():
             break
 
 # Separate running the hand and opening the camera window to remove conflicts.
-def hand_wrapper(recognizer: Recognize, hand: Hand) -> None:
+def hand_wrapper(recognizer: Recognize, hand: Hand, event: threading.Event) -> None:
     gesture = recognizer.gesture_str
 
     # Since the controller constantly runs and stops unlike the recognizer that constantly runs
     # a new thread must be created each time with the new gesture data.
     if hand.actuation.is_alive():
         return
+    elif event.is_set():
+        hand.actuation.join()
     else:
         hand.actuation = threading.Thread(target = hand.run_hand, args = (gesture,))
         hand.actuation.start()

@@ -92,5 +92,4 @@ class Hand:
                     break
 
             self.prev_gesture = self.current_gesture
-            self.actuation.join()
             
