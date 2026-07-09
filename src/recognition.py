@@ -47,20 +47,16 @@ class Recognize:
         self.gesture_str = "Open_Palm"
         self.gesture_score = None
     
-        self.no_gesture = 0
         self.warn = 0
 
     # If a gesture is recognized by the camera the current gesture is set to 'gesture_str', else 'Nothing' is printed 
     # because no gesture is being recognized.
     def print_result(self, result, output_image: mp.Image, timestamp_ms: int) -> None:
         if result.gestures:
-            # Set back to 0 when a gesture is recognized
-            self.no_gesture = 0 
-
             self.gesture_str = result.gestures[0][0].category_name
             self.gesture_score = result.gestures[0][0].score
         else:
-            self.no_gesture = 1
+            self.gesture_str = None
 
         if result.hand_landmarks:
             # Set back to 0 when landmarks are recognized
@@ -196,6 +192,7 @@ class Recognize:
             self.landmarks["PINKY_TIP"] = (ppinky_tip_x, ppinky_tip_y)
         else:
             self.warn = 1
+            self.gesture_score = None
 
     # This method reads the frames from the vision class's generator and uses the built in landmarks for gesture recognition.
     def recognize(self, event: threading.Event, eyes: Vision) -> None:
