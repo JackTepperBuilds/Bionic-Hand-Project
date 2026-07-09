@@ -115,24 +115,27 @@ class Vision:
                     cv.circle(self.frame, pinky_dip, 10, RED, -1)
                     cv.circle(self.frame, pinky_tip, 10, RED, -1)
 
-                # Display gesture name and score 
-                # Capture pixel size of the constantly changing string and score for proper 
-                # display placement
-                font = cv.FONT_HERSHEY_SIMPLEX
-                font_scale = 1
-                thickness = 2
+            # Display gesture name and score 
+            # Capture pixel size of the constantly changing string and score for proper 
+            # display placement
+            font = cv.FONT_HERSHEY_SIMPLEX
+            font_scale = 1
+            thickness = 2
 
-                # Set score as a smaller decimal value and interpolate into string
+            # Set score as a smaller decimal value and interpolate into string
+            if recognize.gesture_score != None:
                 score = Decimal(recognize.gesture_score).quantize(Decimal('0.00'))
-                score_output = f"Confidence: {score}"
+            else: 
+                score = 0
+            score_output = f"Confidence: {score}"
 
-                (width, height), baseline = cv.getTextSize(recognize.gesture_str, font, font_scale, thickness)
-                (width2, height2), baseline = cv.getTextSize(score_output, font, font_scale, thickness)
+            (width, height), baseline = cv.getTextSize(recognize.gesture_str, font, font_scale, thickness)
+            (width2, height2), baseline = cv.getTextSize(score_output, font, font_scale, thickness)
 
-                str_location = (640 - width, 440 - height)
-                score_location = (640 - width2, 480 - height2)
+            str_location = (640 - width, 440 - height)
+            score_location = (640 - width2, 480 - height2)
 
-                cv.putText(self.frame, recognize.gesture_str, str_location, font, font_scale, RED, thickness)
-                cv.putText(self.frame, score_output, score_location, font, font_scale, RED, thickness)
+            cv.putText(self.frame, recognize.gesture_str, str_location, font, font_scale, RED, thickness)
+            cv.putText(self.frame, score_output, score_location, font, font_scale, RED, thickness)
 
             yield self.frame
