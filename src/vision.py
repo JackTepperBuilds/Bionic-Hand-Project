@@ -114,11 +114,15 @@ class Vision:
                 cv.circle(self.frame, pinky_tip, 10, RED, -1)
 
                 # Display gesture name
-                # Converts length of gesture name to a pixel value
-                str_length = (len(recognize.gesture_str) * 640)
-                p0 = (640 - str_length, 30)
-
+                # Capture pixel size of the constantly changing string for proper 
+                # display placement
                 font = cv.FONT_HERSHEY_SIMPLEX
+                font_scale = 2
+                thickness = 2
+
+                size = cv.getTextSize(recognize.gesture_str, font, font_scale, thickness)
+                p0 = (640 - size[0], 480 - size[1])
+
                 cv.putText(self.frame, recognize.gesture_str, p0, font, 2, RED, 2)
 
             yield self.frame
