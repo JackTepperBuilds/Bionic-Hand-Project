@@ -115,6 +115,7 @@ class Vision:
                     cv.circle(self.frame, pinky_dip, 10, RED, -1)
                     cv.circle(self.frame, pinky_tip, 10, RED, -1)
 
+# TODO: Fix error that continues to pop up in raspberry pi terminal when running the program
             # Display gesture name and score 
             # Capture pixel size of the constantly changing string and score for proper 
             # display placement
