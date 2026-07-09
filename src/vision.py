@@ -115,9 +115,9 @@ class Vision:
 
                 # Display gesture name
                 # Converts length of gesture name to a pixel value
-                str_length = len(recognize.gesture_str)
+                str_length = (len(recognize.gesture_str) * 640)
                 p0 = (640 - str_length, 30)
-                
+
                 font = cv.FONT_HERSHEY_SIMPLEX
                 cv.putText(self.frame, recognize.gesture_str, p0, font, 2, RED, 2)
 
