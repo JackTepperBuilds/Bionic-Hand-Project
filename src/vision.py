@@ -121,7 +121,7 @@ class Vision:
                 thickness = 2
 
                 width, height = cv.getTextSize(recognize.gesture_str, font, font_scale, thickness)
-                p0 = (640 - width, 480 - height)
+                p0 = (640 - width[0], 480 - height[1])
 
                 cv.putText(self.frame, recognize.gesture_str, p0, font, 2, RED, 2)
 
