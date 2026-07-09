@@ -114,7 +114,7 @@ class Vision:
                 cv.circle(self.frame, pinky_tip, 10, RED, -1)
 
                 # Display gesture name
-                p0 = (400 - len(recognize.gesture_str), 30)
+                p0 = (680 - len(recognize.gesture_str), 30)
                 font = cv.FONT_HERSHEY_SIMPLEX
                 cv.putText(self.frame, recognize.gesture_str, p0, font, 2, RED, 2)
 
