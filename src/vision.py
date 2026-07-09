@@ -2,6 +2,7 @@ import cv2 as cv
 from picamera2 import Picamera2
 from libcamera import Transform
 from typing import Iterator
+from decimal import Decimal
 
 class Vision:
     # Constructor initializes the camera, sets the config, passes the config to the camera, then starts the camera.
@@ -120,7 +121,8 @@ class Vision:
                 font_scale = 1
                 thickness = 2
 
-                score = int(recognize.gesture_score)
+                # Set score as a smaller decimal value and interpolate into string
+                score = Decimal(recognize.gesture_score).quantize(Decimal('0.00'))
                 score_output = f"Confidence: {score}"
 
                 (width, height), baseline = cv.getTextSize(recognize.gesture_str, font, font_scale, thickness)
