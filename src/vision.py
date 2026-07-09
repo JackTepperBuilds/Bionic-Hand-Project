@@ -22,7 +22,7 @@ class Vision:
         while True:
             self.frame = self.picam2.capture_array()
 
-            if recognize.landmarks["WRIST"] != None:
+            if recognize.landmarks["WRIST"] != None and recognize.warn != 0:
                 # Wrist
                 wrist = recognize.landmarks["WRIST"]
 
