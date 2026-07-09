@@ -22,116 +22,117 @@ class Vision:
         while True:
             self.frame = self.picam2.capture_array()
 
-            if recognize.landmarks["WRIST"] != None and recognize.warn != 1:
-                # Wrist
-                wrist = recognize.landmarks["WRIST"]
+            if recognize.landmarks["WRIST"] != None:
+                if recognize.warn != 1:
+                    # Wrist
+                    wrist = recognize.landmarks["WRIST"]
 
-                # Thumb
-                thumb_cmc = recognize.landmarks["THUMB_CMC"]
-                thumb_mcp = recognize.landmarks["THUMB_MCP"]
-                thumb_ip = recognize.landmarks["THUMB_IP"]
-                thumb_tip = recognize.landmarks["THUMB_TIP"]
+                    # Thumb
+                    thumb_cmc = recognize.landmarks["THUMB_CMC"]
+                    thumb_mcp = recognize.landmarks["THUMB_MCP"]
+                    thumb_ip = recognize.landmarks["THUMB_IP"]
+                    thumb_tip = recognize.landmarks["THUMB_TIP"]
 
-                # Index 
-                index_finger_mcp = recognize.landmarks["INDEX_FINGER_MCP"]
-                index_finger_pip = recognize.landmarks["INDEX_FINGER_PIP"]
-                index_finger_dip = recognize.landmarks["INDEX_FINGER_DIP"]
-                index_finger_tip = recognize.landmarks["INDEX_FINGER_TIP"]
+                    # Index 
+                    index_finger_mcp = recognize.landmarks["INDEX_FINGER_MCP"]
+                    index_finger_pip = recognize.landmarks["INDEX_FINGER_PIP"]
+                    index_finger_dip = recognize.landmarks["INDEX_FINGER_DIP"]
+                    index_finger_tip = recognize.landmarks["INDEX_FINGER_TIP"]
 
-                # Middle
-                middle_finger_mcp = recognize.landmarks["MIDDLE_FINGER_MCP"]
-                middle_finger_pip = recognize.landmarks["MIDDLE_FINGER_PIP"]
-                middle_finger_dip = recognize.landmarks["MIDDLE_FINGER_DIP"]
-                middle_finger_tip = recognize.landmarks["MIDDLE_FINGER_TIP"]
+                    # Middle
+                    middle_finger_mcp = recognize.landmarks["MIDDLE_FINGER_MCP"]
+                    middle_finger_pip = recognize.landmarks["MIDDLE_FINGER_PIP"]
+                    middle_finger_dip = recognize.landmarks["MIDDLE_FINGER_DIP"]
+                    middle_finger_tip = recognize.landmarks["MIDDLE_FINGER_TIP"]
 
-                # Ring
-                ring_finger_mcp = recognize.landmarks["RING_FINGER_MCP"]
-                ring_finger_pip = recognize.landmarks["RING_FINGER_PIP"]
-                ring_finger_dip = recognize.landmarks["RING_FINGER_DIP"]
-                ring_finger_tip = recognize.landmarks["RING_FINGER_TIP"]
+                    # Ring
+                    ring_finger_mcp = recognize.landmarks["RING_FINGER_MCP"]
+                    ring_finger_pip = recognize.landmarks["RING_FINGER_PIP"]
+                    ring_finger_dip = recognize.landmarks["RING_FINGER_DIP"]
+                    ring_finger_tip = recognize.landmarks["RING_FINGER_TIP"]
 
-                # Pinky
-                pinky_mcp = recognize.landmarks["PINKY_MCP"]
-                pinky_pip = recognize.landmarks["PINKY_PIP"]
-                pinky_dip = recognize.landmarks["PINKY_DIP"]
-                pinky_tip = recognize.landmarks["PINKY_TIP"]
+                    # Pinky
+                    pinky_mcp = recognize.landmarks["PINKY_MCP"]
+                    pinky_pip = recognize.landmarks["PINKY_PIP"]
+                    pinky_dip = recognize.landmarks["PINKY_DIP"]
+                    pinky_tip = recognize.landmarks["PINKY_TIP"]
 
-                # Plots thumb lines
-                cv.line(self.frame, wrist, thumb_cmc, GREEN, 5)
-                cv.line(self.frame, thumb_cmc, thumb_mcp, GREEN, 5)
-                cv.line(self.frame, thumb_mcp, thumb_ip, GREEN, 5)
-                cv.line(self.frame, thumb_ip, thumb_tip, GREEN, 5)
+                    # Plots thumb lines
+                    cv.line(self.frame, wrist, thumb_cmc, GREEN, 5)
+                    cv.line(self.frame, thumb_cmc, thumb_mcp, GREEN, 5)
+                    cv.line(self.frame, thumb_mcp, thumb_ip, GREEN, 5)
+                    cv.line(self.frame, thumb_ip, thumb_tip, GREEN, 5)
 
-                # Plot index lines
-                cv.line(self.frame, wrist, index_finger_mcp, GREEN, 5)
-                cv.line(self.frame, index_finger_mcp, index_finger_pip, GREEN, 5)
-                cv.line(self.frame, index_finger_pip, index_finger_dip, GREEN, 5)
-                cv.line(self.frame, index_finger_dip, index_finger_tip, GREEN, 5)
+                    # Plot index lines
+                    cv.line(self.frame, wrist, index_finger_mcp, GREEN, 5)
+                    cv.line(self.frame, index_finger_mcp, index_finger_pip, GREEN, 5)
+                    cv.line(self.frame, index_finger_pip, index_finger_dip, GREEN, 5)
+                    cv.line(self.frame, index_finger_dip, index_finger_tip, GREEN, 5)
 
-                # Plot middle lines
-                cv.line(self.frame, wrist, middle_finger_mcp, GREEN, 5)
-                cv.line(self.frame, middle_finger_mcp, middle_finger_pip, GREEN, 5)
-                cv.line(self.frame, middle_finger_pip, middle_finger_dip, GREEN, 5)
-                cv.line(self.frame, middle_finger_dip, middle_finger_tip, GREEN, 5)
+                    # Plot middle lines
+                    cv.line(self.frame, wrist, middle_finger_mcp, GREEN, 5)
+                    cv.line(self.frame, middle_finger_mcp, middle_finger_pip, GREEN, 5)
+                    cv.line(self.frame, middle_finger_pip, middle_finger_dip, GREEN, 5)
+                    cv.line(self.frame, middle_finger_dip, middle_finger_tip, GREEN, 5)
 
-                # Plot ring lines
-                cv.line(self.frame, wrist, ring_finger_mcp, GREEN, 5)
-                cv.line(self.frame, ring_finger_mcp, ring_finger_pip, GREEN, 5)
-                cv.line(self.frame, ring_finger_pip, ring_finger_dip, GREEN, 5)
-                cv.line(self.frame, ring_finger_dip, ring_finger_tip, GREEN, 5)
+                    # Plot ring lines
+                    cv.line(self.frame, wrist, ring_finger_mcp, GREEN, 5)
+                    cv.line(self.frame, ring_finger_mcp, ring_finger_pip, GREEN, 5)
+                    cv.line(self.frame, ring_finger_pip, ring_finger_dip, GREEN, 5)
+                    cv.line(self.frame, ring_finger_dip, ring_finger_tip, GREEN, 5)
 
-                # Plot pinky lines
-                cv.line(self.frame, wrist, pinky_mcp, GREEN, 5)
-                cv.line(self.frame, pinky_mcp, pinky_pip, GREEN, 5)
-                cv.line(self.frame, pinky_pip, pinky_dip, GREEN, 5)
-                cv.line(self.frame, pinky_dip, pinky_tip, GREEN, 5)
+                    # Plot pinky lines
+                    cv.line(self.frame, wrist, pinky_mcp, GREEN, 5)
+                    cv.line(self.frame, pinky_mcp, pinky_pip, GREEN, 5)
+                    cv.line(self.frame, pinky_pip, pinky_dip, GREEN, 5)
+                    cv.line(self.frame, pinky_dip, pinky_tip, GREEN, 5)
 
-                # Plots circles
-                cv.circle(self.frame, wrist, 10, RED, -1)
+                    # Plots circles
+                    cv.circle(self.frame, wrist, 10, RED, -1)
 
-                cv.circle(self.frame, thumb_cmc, 10, RED, -1)
-                cv.circle(self.frame, thumb_mcp, 10, RED, -1)
-                cv.circle(self.frame, thumb_ip, 10, RED, -1)
-                cv.circle(self.frame, thumb_tip, 10, RED, -1)
+                    cv.circle(self.frame, thumb_cmc, 10, RED, -1)
+                    cv.circle(self.frame, thumb_mcp, 10, RED, -1)
+                    cv.circle(self.frame, thumb_ip, 10, RED, -1)
+                    cv.circle(self.frame, thumb_tip, 10, RED, -1)
 
-                cv.circle(self.frame, index_finger_mcp, 10, RED, -1)
-                cv.circle(self.frame, index_finger_pip, 10, RED, -1)
-                cv.circle(self.frame, index_finger_dip, 10, RED, -1)
-                cv.circle(self.frame, index_finger_tip, 10, RED, -1)
+                    cv.circle(self.frame, index_finger_mcp, 10, RED, -1)
+                    cv.circle(self.frame, index_finger_pip, 10, RED, -1)
+                    cv.circle(self.frame, index_finger_dip, 10, RED, -1)
+                    cv.circle(self.frame, index_finger_tip, 10, RED, -1)
 
-                cv.circle(self.frame, middle_finger_mcp, 10, RED, -1)
-                cv.circle(self.frame, middle_finger_pip, 10, RED, -1)
-                cv.circle(self.frame, middle_finger_dip, 10, RED, -1)
-                cv.circle(self.frame, middle_finger_tip, 10, RED, -1)
+                    cv.circle(self.frame, middle_finger_mcp, 10, RED, -1)
+                    cv.circle(self.frame, middle_finger_pip, 10, RED, -1)
+                    cv.circle(self.frame, middle_finger_dip, 10, RED, -1)
+                    cv.circle(self.frame, middle_finger_tip, 10, RED, -1)
 
-                cv.circle(self.frame, ring_finger_mcp, 10, RED, -1)
-                cv.circle(self.frame, ring_finger_pip, 10, RED, -1)
-                cv.circle(self.frame, ring_finger_dip, 10, RED, -1)
-                cv.circle(self.frame, ring_finger_tip, 10, RED, -1)
+                    cv.circle(self.frame, ring_finger_mcp, 10, RED, -1)
+                    cv.circle(self.frame, ring_finger_pip, 10, RED, -1)
+                    cv.circle(self.frame, ring_finger_dip, 10, RED, -1)
+                    cv.circle(self.frame, ring_finger_tip, 10, RED, -1)
 
-                cv.circle(self.frame, pinky_mcp, 10, RED, -1)
-                cv.circle(self.frame, pinky_pip, 10, RED, -1)
-                cv.circle(self.frame, pinky_dip, 10, RED, -1)
-                cv.circle(self.frame, pinky_tip, 10, RED, -1)
+                    cv.circle(self.frame, pinky_mcp, 10, RED, -1)
+                    cv.circle(self.frame, pinky_pip, 10, RED, -1)
+                    cv.circle(self.frame, pinky_dip, 10, RED, -1)
+                    cv.circle(self.frame, pinky_tip, 10, RED, -1)
 
-            # Display gesture name and score 
-            # Capture pixel size of the constantly changing string and score for proper 
-            # display placement
-            font = cv.FONT_HERSHEY_SIMPLEX
-            font_scale = 1
-            thickness = 2
+                # Display gesture name and score 
+                # Capture pixel size of the constantly changing string and score for proper 
+                # display placement
+                font = cv.FONT_HERSHEY_SIMPLEX
+                font_scale = 1
+                thickness = 2
 
-            # Set score as a smaller decimal value and interpolate into string
-            score = Decimal(recognize.gesture_score).quantize(Decimal('0.00'))
-            score_output = f"Confidence: {score}"
+                # Set score as a smaller decimal value and interpolate into string
+                score = Decimal(recognize.gesture_score).quantize(Decimal('0.00'))
+                score_output = f"Confidence: {score}"
 
-            (width, height), baseline = cv.getTextSize(recognize.gesture_str, font, font_scale, thickness)
-            (width2, height2), baseline = cv.getTextSize(score_output, font, font_scale, thickness)
+                (width, height), baseline = cv.getTextSize(recognize.gesture_str, font, font_scale, thickness)
+                (width2, height2), baseline = cv.getTextSize(score_output, font, font_scale, thickness)
 
-            str_location = (640 - width, 440 - height)
-            score_location = (640 - width2, 480 - height2)
+                str_location = (640 - width, 440 - height)
+                score_location = (640 - width2, 480 - height2)
 
-            cv.putText(self.frame, recognize.gesture_str, str_location, font, font_scale, RED, thickness)
-            cv.putText(self.frame, score_output, score_location, font, font_scale, RED, thickness)
+                cv.putText(self.frame, recognize.gesture_str, str_location, font, font_scale, RED, thickness)
+                cv.putText(self.frame, score_output, score_location, font, font_scale, RED, thickness)
 
             yield self.frame
