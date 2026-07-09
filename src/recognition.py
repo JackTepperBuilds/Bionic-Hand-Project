@@ -56,7 +56,7 @@ class Recognize:
             self.gesture_str = result.gestures[0][0].category_name
             self.gesture_score = result.gestures[0][0].score
         else:
-            self.gesture_str = None
+            self.gesture_str = "None"
 
         if result.hand_landmarks:
             # Set back to 0 when landmarks are recognized
