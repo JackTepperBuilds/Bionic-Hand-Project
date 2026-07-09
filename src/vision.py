@@ -119,7 +119,9 @@ class Vision:
                 font = cv.FONT_HERSHEY_SIMPLEX
                 font_scale = 1
                 thickness = 2
-                score_output = f"Confidence: {recognize.gesture_score}"
+
+                score = int(recognize.gesture_score)
+                score_output = f"Confidence: {score}"
 
                 (width, height), baseline = cv.getTextSize(recognize.gesture_str, font, font_scale, thickness)
                 (width2, height2), baseline = cv.getTextSize(score_output, font, font_scale, thickness)
