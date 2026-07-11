@@ -20,7 +20,7 @@ def main():
     recog_loop.start() # Runs the recognizer.
 
     while True:
-        hand_wrapper(recognizer, hand)
+        hand_wrapper(recognizer, hand, event)
 
         current_frame = next(x)
         cv.imshow('LIVE', current_frame)
@@ -38,13 +38,15 @@ def main():
             break
 
 # Separate running the hand and opening the camera window to remove conflicts.
-def hand_wrapper(recognizer: Recognize, hand: Hand) -> None:
+def hand_wrapper(recognizer: Recognize, hand: Hand, event: threading.Event) -> None:
     gesture = recognizer.gesture_str
 
     # Since the controller constantly runs and stops unlike the recognizer that constantly runs
     # a new thread must be created each time with the new gesture data.
     if hand.actuation.is_alive():
         return
+    elif event.is_set():
+        hand.actuation.join()
     else:
         hand.actuation = threading.Thread(target = hand.run_hand, args = (gesture,))
         hand.actuation.start()
