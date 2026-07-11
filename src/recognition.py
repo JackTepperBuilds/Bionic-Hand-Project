@@ -6,6 +6,8 @@ import cv2 as cv
 import time
 import threading
 
+WIDTH = 640
+HEIGHT = 480
 class Recognize:
     def __init__(self):
         # Sets references to MediaPipes recognizer classes.
@@ -66,8 +68,8 @@ class Recognize:
             # Wrist
             wrist_x = result.hand_landmarks[0][0].x
             wrist_y = result.hand_landmarks[0][0].y
-            pwrist_x = int(wrist_x * 640)
-            pwrist_y = int(wrist_y * 480)
+            pwrist_x = int(wrist_x * WIDTH)
+            pwrist_y = int(wrist_y * HEIGHT)
 
             self.landmarks["WRIST"] = (pwrist_x, pwrist_y)
             
@@ -81,14 +83,14 @@ class Recognize:
             thumb_tip_x = result.hand_landmarks[0][4].x
             thumb_tip_y = result.hand_landmarks[0][4].y
 
-            pthumb_cmc_x = int(thumb_cmc_x * 640)
-            pthumb_cmc_y = int(thumb_cmc_y * 480)
-            pthumb_mcp_x = int(thumb_mcp_x * 640)
-            pthumb_mcp_y = int(thumb_mcp_y * 480)
-            pthumb_ip_x = int(thumb_ip_x * 640)
-            pthumb_ip_y = int(thumb_ip_y * 480)
-            pthumb_tip_x = int(thumb_tip_x * 640)
-            pthumb_tip_y = int(thumb_tip_y * 480)
+            pthumb_cmc_x = int(thumb_cmc_x * WIDTH)
+            pthumb_cmc_y = int(thumb_cmc_y * HEIGHT)
+            pthumb_mcp_x = int(thumb_mcp_x * WIDTH)
+            pthumb_mcp_y = int(thumb_mcp_y * HEIGHT)
+            pthumb_ip_x = int(thumb_ip_x * WIDTH)
+            pthumb_ip_y = int(thumb_ip_y * HEIGHT)
+            pthumb_tip_x = int(thumb_tip_x * WIDTH)
+            pthumb_tip_y = int(thumb_tip_y * HEIGHT)
             
             self.landmarks["THUMB_CMC"] = (pthumb_cmc_x, pthumb_cmc_y)
             self.landmarks["THUMB_MCP"] = (pthumb_mcp_x, pthumb_mcp_y)
@@ -105,14 +107,14 @@ class Recognize:
             index_tip_x = result.hand_landmarks[0][8].x
             index_tip_y = result.hand_landmarks[0][8].y
 
-            pindex_mcp_x = int(index_mcp_x * 640)
-            pindex_mcp_y = int(index_mcp_y * 480)
-            pindex_pip_x = int(index_pip_x * 640)
-            pindex_pip_y = int(index_pip_y * 480)
-            pindex_dip_x = int(index_dip_x * 640)
-            pindex_dip_y = int(index_dip_y * 480)
-            pindex_tip_x = int(index_tip_x * 640)
-            pindex_tip_y = int(index_tip_y * 480)
+            pindex_mcp_x = int(index_mcp_x * WIDTH)
+            pindex_mcp_y = int(index_mcp_y * HEIGHT)
+            pindex_pip_x = int(index_pip_x * WIDTH)
+            pindex_pip_y = int(index_pip_y * HEIGHT)
+            pindex_dip_x = int(index_dip_x * WIDTH)
+            pindex_dip_y = int(index_dip_y * HEIGHT)
+            pindex_tip_x = int(index_tip_x * WIDTH)
+            pindex_tip_y = int(index_tip_y * HEIGHT)
 
             self.landmarks["INDEX_FINGER_MCP"] = (pindex_mcp_x, pindex_mcp_y)
             self.landmarks["INDEX_FINGER_PIP"] = (pindex_pip_x, pindex_pip_y)
@@ -129,14 +131,14 @@ class Recognize:
             middle_tip_x = result.hand_landmarks[0][12].x
             middle_tip_y = result.hand_landmarks[0][12].y
 
-            pmiddle_mcp_x = int(middle_mcp_x * 640)
-            pmiddle_mcp_y = int(middle_mcp_y * 480)
-            pmiddle_pip_x = int(middle_pip_x * 640)
-            pmiddle_pip_y = int(middle_pip_y * 480)
-            pmiddle_dip_x = int(middle_dip_x * 640)
-            pmiddle_dip_y = int(middle_dip_y * 480)
-            pmiddle_tip_x = int(middle_tip_x * 640)
-            pmiddle_tip_y = int(middle_tip_y * 480)
+            pmiddle_mcp_x = int(middle_mcp_x * WIDTH)
+            pmiddle_mcp_y = int(middle_mcp_y * HEIGHT)
+            pmiddle_pip_x = int(middle_pip_x * WIDTH)
+            pmiddle_pip_y = int(middle_pip_y * HEIGHT)
+            pmiddle_dip_x = int(middle_dip_x * WIDTH)
+            pmiddle_dip_y = int(middle_dip_y * HEIGHT)
+            pmiddle_tip_x = int(middle_tip_x * WIDTH)
+            pmiddle_tip_y = int(middle_tip_y * HEIGHT)
 
             self.landmarks["MIDDLE_FINGER_MCP"] = (pmiddle_mcp_x, pmiddle_mcp_y)
             self.landmarks["MIDDLE_FINGER_PIP"] = (pmiddle_pip_x, pmiddle_pip_y)
@@ -153,14 +155,14 @@ class Recognize:
             ring_tip_x = result.hand_landmarks[0][16].x
             ring_tip_y = result.hand_landmarks[0][16].y
 
-            pring_mcp_x = int(ring_mcp_x * 640)
-            pring_mcp_y = int(ring_mcp_y * 480)
-            pring_pip_x = int(ring_pip_x * 640)
-            pring_pip_y = int(ring_pip_y * 480)
-            pring_dip_x = int(ring_dip_x * 640)
-            pring_dip_y = int(ring_dip_y * 480)
-            pring_tip_x = int(ring_tip_x * 640)
-            pring_tip_y = int(ring_tip_y * 480)
+            pring_mcp_x = int(ring_mcp_x * WIDTH)
+            pring_mcp_y = int(ring_mcp_y * HEIGHT)
+            pring_pip_x = int(ring_pip_x * WIDTH)
+            pring_pip_y = int(ring_pip_y * HEIGHT)
+            pring_dip_x = int(ring_dip_x * WIDTH)
+            pring_dip_y = int(ring_dip_y * HEIGHT)
+            pring_tip_x = int(ring_tip_x * WIDTH)
+            pring_tip_y = int(ring_tip_y * HEIGHT)
 
             self.landmarks["RING_FINGER_MCP"] = (pring_mcp_x, pring_mcp_y)
             self.landmarks["RING_FINGER_PIP"] = (pring_pip_x, pring_pip_y)
@@ -177,14 +179,14 @@ class Recognize:
             pinky_tip_x = result.hand_landmarks[0][20].x
             pinky_tip_y = result.hand_landmarks[0][20].y
 
-            ppinky_mcp_x = int(pinky_mcp_x * 640)
-            ppinky_mcp_y = int(pinky_mcp_y * 480)
-            ppinky_pip_x = int(pinky_pip_x * 640)
-            ppinky_pip_y = int(pinky_pip_y * 480)
-            ppinky_dip_x = int(pinky_dip_x * 640)
-            ppinky_dip_y = int(pinky_dip_y * 480)
-            ppinky_tip_x = int(pinky_tip_x * 640)
-            ppinky_tip_y = int(pinky_tip_y * 480)
+            ppinky_mcp_x = int(pinky_mcp_x * WIDTH)
+            ppinky_mcp_y = int(pinky_mcp_y * HEIGHT)
+            ppinky_pip_x = int(pinky_pip_x * WIDTH)
+            ppinky_pip_y = int(pinky_pip_y * HEIGHT)
+            ppinky_dip_x = int(pinky_dip_x * WIDTH)
+            ppinky_dip_y = int(pinky_dip_y * HEIGHT)
+            ppinky_tip_x = int(pinky_tip_x * WIDTH)
+            ppinky_tip_y = int(pinky_tip_y * HEIGHT)
 
             self.landmarks["PINKY_MCP"] = (ppinky_mcp_x, ppinky_mcp_y)
             self.landmarks["PINKY_PIP"] = (ppinky_pip_x, ppinky_pip_y)

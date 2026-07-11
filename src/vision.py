@@ -7,13 +7,15 @@ from decimal import Decimal
 class Vision:
     # Constructor initializes the camera, sets the config, passes the config to the camera, then starts the camera.
     def __init__(self):
+        self.width_frame = 640
+        self.height_frame = 480
+
         self.picam2 = Picamera2()
-        config = self.picam2.create_preview_configuration({'size': (640, 480), 'format': 'RGB888'}, transform = Transform(hflip = True))
+        config = self.picam2.create_preview_configuration({'size': (self.width_frame, self.height_frame), 'format': 'RGB888'}, transform = Transform(hflip = True))
         self.picam2.configure(config)
         self.picam2.start()
 
         self.frame = None
-        self.end_program = 0
 
     def generator(self, recognize) -> Iterator:
         GREEN = (0, 255, 0)
@@ -115,10 +117,6 @@ class Vision:
                     cv.circle(self.frame, pinky_dip, 10, RED, -1)
                     cv.circle(self.frame, pinky_tip, 10, RED, -1)
 
-# TODO: Fix error that continues to pop up in raspberry pi terminal when running the program
-            # Display gesture name and score 
-            # Capture pixel size of the constantly changing string and score for proper 
-            # display placement
             font = cv.FONT_HERSHEY_SIMPLEX
             font_scale = 1
             thickness = 2
@@ -133,8 +131,8 @@ class Vision:
             (width, height), baseline = cv.getTextSize(recognize.gesture_str, font, font_scale, thickness)
             (width2, height2), baseline = cv.getTextSize(score_output, font, font_scale, thickness)
 
-            str_location = (640 - width, 440 - height)
-            score_location = (640 - width2, 480 - height2)
+            str_location = (self.width_frame - width, 440 - height)
+            score_location = (self.width_frame - width2, self.height_frame - height2)
 
             cv.putText(self.frame, recognize.gesture_str, str_location, font, font_scale, RED, thickness)
             cv.putText(self.frame, score_output, score_location, font, font_scale, RED, thickness)
