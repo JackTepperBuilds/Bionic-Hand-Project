@@ -1,7 +1,7 @@
 ## MK0 GIF
 
 ### Gesture Recognition
-<img width="640" height="396" alt="20260504_141202(1)" src="https://github.com/user-attachments/assets/2e550a3d-35d1-4758-a8a7-08d186947fc2" />
+<img width="654" height="368" alt="20260711_024246(1)" src="https://github.com/user-attachments/assets/af7bc7ac-7d19-4efc-9984-4e2d66e1bddb" />
 
 ---
 
@@ -51,6 +51,8 @@ The project is developed in iterative versions:
 - **MK0** → Initial prototype with basic MediaPipe gesture-to-servo mapping
 - **MK0.5** → OOP refactor of MK0 code featuring an error-based servo actuation algorithm to support future more complex gestures
 - **MK0.6** → Multithreaded recognizer and hand controller with a safe exit using keyboard button 'd'
+- **MK0.7** → Real-time MediaPipe landmark overlay to live feed
+- **MK0.8** → Final MK0 iteration, implimenting gesture name and score onto real-time feed
 - **MK1 (Planned)** → Refactored MK0 code in C++, improved control, 17 degrees of freedom, and redesigned mechanical build
 
 Each version is tracked using Git tags and documented in the `docs/` folder.
