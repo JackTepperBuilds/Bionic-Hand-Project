@@ -7,8 +7,8 @@ from decimal import Decimal
 class Vision:
     # Constructor initializes the camera, sets the config, passes the config to the camera, then starts the camera.
     def __init__(self):
-        self.width_frame = 1080
-        self.height_frame = 1920
+        self.width_frame = 640
+        self.height_frame = 480
 
         self.picam2 = Picamera2()
         config = self.picam2.create_preview_configuration({'size': (self.width_frame, self.height_frame), 'format': 'RGB888'}, transform = Transform(hflip = True))
