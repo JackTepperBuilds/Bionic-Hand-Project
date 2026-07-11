@@ -6,8 +6,8 @@ import cv2 as cv
 import time
 import threading
 
-WIDTH = 640
-HEIGHT = 480
+WIDTH = 1080
+HEIGHT = 1920
 class Recognize:
     def __init__(self):
         # Sets references to MediaPipes recognizer classes.
