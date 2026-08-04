@@ -11,8 +11,8 @@ i2c: busio.I2C = busio.I2C(board.SCL, board.SDA)
 pca: PCA9685 = PCA9685(i2c)
 pca.frequency = 50
 
-wrist = servo.Servo(pca.channels[0], min_pulse=500, max_pulse=2500)
-pointer = servo.Servo(pca.channels[1], min_pulse=500, max_pulse=2500)
+wrist = servo.Servo(pca.channels[1], min_pulse=500, max_pulse=2500)
+pointer = servo.Servo(pca.channels[0], min_pulse=500, max_pulse=2500)
 
 wrist.angle = 90
 pointer.angle = 90
