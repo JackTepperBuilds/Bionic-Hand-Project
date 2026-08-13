@@ -23,6 +23,8 @@ class Center:
         self.finger.angle = 0
         time.sleep(1)
         self.finger.angle = 180
+        time.sleep(1)
+        self.finger.angle = 90
 
 if __name__ == "__main__":
     move_finger = Center()
