@@ -1,4 +1,4 @@
-# This script is for testing servo movement (0 - 90 - 180 degrees). This is 
+# This script is for testing servo movement. This is 
 # done to ensure the servos for each finger (flex & extension) are properly 
 # pulling each fishing line.
 
@@ -18,13 +18,9 @@ class Center:
 
     # Move servo to its 90 degree position
     def controller(self):
-        self.finger.angle = 90
-        time.sleep(1)
-        self.finger.angle = 0
-        time.sleep(1)
-        self.finger.angle = 180
-        time.sleep(1)
-        self.finger.angle = 90
+        for x in range(0, 180, 10):
+            self.finger.angle = x
+            time.sleep(1)
 
 if __name__ == "__main__":
     move_finger = Center()
