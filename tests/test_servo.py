@@ -6,6 +6,7 @@ import board                          # GPIO pins such as SCL and SDA
 import busio                          # Used to setup I2C connection
 from adafruit_pca9685 import PCA9685 # Servo Driver
 from adafruit_motor import servo      # Angle control
+import time
 
 class Center:
     def __init__(self):
@@ -17,8 +18,10 @@ class Center:
 
     # Move servo to its 90 degree position
     def controller(self):
-        self.finger.angle = 90 
+        self.finger.angle = 90
+        time.sleep(1)
         self.finger.angle = 0
+        time.sleep(1)
         self.finger.angle = 180
 
 if __name__ == "__main__":
