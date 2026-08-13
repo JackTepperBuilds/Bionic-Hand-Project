@@ -11,10 +11,14 @@ class Center:
     def __init__(self):
         i2c = busio.I2C(board.SCL, board.SDA)
         pca = PCA9685(i2c)
-        pca.fequency = 50
+        pca.frequency = 50
 
         self.center = servo.Servo(pca.channels[0], min_pulse = 500, max_pulse = 2500)
 
     # Move servo to its 90 degree position
     def controller(self):
         self.center.angle = 90
+
+if __name__ == "__main__":
+    center = Center()
+    center.controller()
