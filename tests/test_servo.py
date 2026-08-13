@@ -21,6 +21,7 @@ class Center:
         for x in range(0, 180, 10):
             self.finger.angle = x
             time.sleep(1)
+            print("Degrees: ")
 
 if __name__ == "__main__":
     move_finger = Center()
