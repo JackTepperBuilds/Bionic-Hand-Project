@@ -18,7 +18,7 @@ class Center:
 
     # Move servo to its 90 degree position
     def controller(self):
-        for x in range(0, 180, 10):
+        for x in range(0, 190, 10):
             self.finger.angle = x
             time.sleep(1)
             print(f"Degrees: {x}")
